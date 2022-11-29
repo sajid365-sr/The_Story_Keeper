@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../Contexts/AuthContext/AuthContext";
 
 const Login = () => {
   const { register, handleSubmit, formState:{errors} } = useForm();
-
+   const user = useContext(UserContext);
+console.log(user)
 
   const handleLogin = (data) =>{
 
@@ -14,9 +16,9 @@ const Login = () => {
   }
 
   return (
-    <div className="bg-gradient-to-bl from-[#270a6b] to-secondary flex justify-center items-center h-[100vh] lg:h-[90vh] lg:rounded-2xl">
+    <div className="bg-gradient-to-bl from-secondary to-[#0a3f6b] flex justify-center items-center h-[100vh] lg:h-[90vh] lg:rounded-2xl">
       <div className="lg:w-2/6 w-10/12 bg-info py-10 rounded-lg bg-opacity-30">
-        <h2 className="text-center mb-10 text-5xl text-gray-900">Login</h2>
+        <h2 className="text-center mb-10 font-Kaushan text-5xl text-gray-900">Login</h2>
         <form onSubmit={handleSubmit(handleLogin)} className="px-6 flex flex-col gap-4" action="">
           <div>
           <label className="text-gray-300" htmlFor="name">Enter Your Email</label>

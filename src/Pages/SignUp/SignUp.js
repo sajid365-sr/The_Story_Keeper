@@ -16,9 +16,9 @@ const SignUp = () => {
       }
 
     return (
-        <div className="bg-gradient-to-bl from-[#270a6b] to-secondary flex justify-center items-center h-[100vh] lg:h-[90vh] lg:rounded-2xl">
+        <div className="bg-gradient-to-bl from-[#0a3f6b] to-secondary flex justify-center items-center h-[100vh] lg:h-[90vh] lg:rounded-2xl">
       <div className="lg:w-2/6 w-10/12 bg-info py-10 rounded-lg bg-opacity-30">
-        <h2 className="text-center mb-10 text-5xl text-gray-900">SignUp</h2>
+        <h2 className="text-center mb-10 text-5xl font-Kaushan text-gray-900">SignUp</h2>
         <form onSubmit={handleSubmit(handleLogin)} className="px-6 flex flex-col gap-4" action="">
           <div>
           <label className="text-gray-300" htmlFor="name">Enter Your Name</label>
