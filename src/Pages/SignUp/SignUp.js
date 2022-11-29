@@ -1,18 +1,25 @@
 
 import React from 'react';
 import { useForm } from "react-hook-form";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState:{errors} } = useForm();
 
+    const handleLogin = (data) =>{
 
+        const {name, email, password} = data;
+        console.log(data)
+    
+      }
 
     return (
-        <div className="bg-gradient-to-bl from-[#270a6b] to-secondary flex justify-center items-center h-[90vh] rounded-2xl">
-      <div className="w-2/6 bg-info py-10 rounded-lg bg-opacity-30">
-        <h2 className="text-center mb-10 text-5xl text-gray-900">Login</h2>
-        <form className="px-6 flex flex-col gap-4" action="">
+        <div className="bg-gradient-to-bl from-[#270a6b] to-secondary flex justify-center items-center h-[100vh] lg:h-[90vh] lg:rounded-2xl">
+      <div className="lg:w-2/6 w-10/12 bg-info py-10 rounded-lg bg-opacity-30">
+        <h2 className="text-center mb-10 text-5xl text-gray-900">SignUp</h2>
+        <form onSubmit={handleSubmit(handleLogin)} className="px-6 flex flex-col gap-4" action="">
           <div>
           <label className="text-gray-300" htmlFor="name">Enter Your Name</label>
           <input
@@ -20,8 +27,9 @@ const SignUp = () => {
             name="name"
             placeholder="Type here"
             className="input text-gray-700 mt-1 font-medium focus:outline-secondary w-full"
-            {...register('name')}
+            {...register('name',{required:'Name is required'})}
           />
+          {errors.name && <span className="text-error">{errors.name?.message}</span>}
           </div>
           <div>
           <label className="text-gray-300" htmlFor="name">Enter Your Email</label>
@@ -30,8 +38,9 @@ const SignUp = () => {
             name="email"
             placeholder="Type here"
             className="input text-gray-700 mt-1 font-medium focus:outline-secondary w-full"
-            {...register('email')}
+            {...register('email',{required:'Email is required'})}
           />
+          {errors.email && <span className="text-error">{errors.email?.message}</span>}
           </div>
           <div>
           <label className="text-gray-300" htmlFor="name">Enter Your password</label>
@@ -40,9 +49,19 @@ const SignUp = () => {
             name="password"
             placeholder="Type here"
             className="input text-gray-700 mt-1 font-medium focus:outline-secondary w-full"
-            {...register('password')}
+            {...register('password',{required:'Password is required'})}
           />
+          {errors.password && <span className="text-error">{errors.password?.message}</span>}
           </div>
+          <div className="divider">OR</div>
+          <div className="flex justify-center gap-5">
+              <FaFacebook className="text-3xl hover:text-info" role='button'
+              />
+              <FaGoogle className="text-3xl hover:text-info" role='button'
+              />
+          </div>
+          <p className="text-sm mt-3">Already have an account? <Link className="underline text-info" to='/login'>login</Link> here.</p>
+            <input className="btn text-lg tracking-widest" type="submit" value='SignUP' />
         </form>
       </div>
     </div>

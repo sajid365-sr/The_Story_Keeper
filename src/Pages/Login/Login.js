@@ -4,7 +4,7 @@ import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState:{errors} } = useForm();
 
 
   const handleLogin = (data) =>{
@@ -14,8 +14,8 @@ const Login = () => {
   }
 
   return (
-    <div className="bg-gradient-to-bl from-[#270a6b] to-secondary flex justify-center items-center h-[90vh] rounded-2xl">
-      <div className="w-2/6 bg-info py-10 rounded-lg bg-opacity-30">
+    <div className="bg-gradient-to-bl from-[#270a6b] to-secondary flex justify-center items-center h-[100vh] lg:h-[90vh] lg:rounded-2xl">
+      <div className="lg:w-2/6 w-10/12 bg-info py-10 rounded-lg bg-opacity-30">
         <h2 className="text-center mb-10 text-5xl text-gray-900">Login</h2>
         <form onSubmit={handleSubmit(handleLogin)} className="px-6 flex flex-col gap-4" action="">
           <div>
@@ -25,8 +25,9 @@ const Login = () => {
             name="email"
             placeholder="Type here"
             className="input text-gray-700 mt-1 font-medium focus:outline-secondary w-full"
-            {...register('email')}
+            {...register('email', {required:'Email is required'})}
           />
+          {errors.email && <span className="text-error">{errors.email?.message}</span>}
           </div>
           <div>
           <label className="text-gray-300" htmlFor="name">Enter Your password</label>
@@ -35,8 +36,9 @@ const Login = () => {
             name="password"
             placeholder="Type here"
             className="input text-gray-700 mt-1 font-medium focus:outline-secondary w-full"
-            {...register('password')}
+            {...register('password', {required:'Password is required'})}
           />
+          {errors.password && <span className="text-error">{errors.password?.message}</span>}
           <label role='button' className="text-gray-300 hover:text-info underline text-sm" htmlFor="name">Forgot Your password?</label>
           </div>
           <div className="divider">OR</div>
