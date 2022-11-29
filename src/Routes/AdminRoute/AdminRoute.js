@@ -1,13 +1,12 @@
 
 import React from 'react';
 
-const Home = () => {
+const AdminRoute = () => {
     return (
         <div>
-            <h2>this is home page</h2>
             
         </div>
     );
 };
 
-export default Home;
+export default AdminRoute;
