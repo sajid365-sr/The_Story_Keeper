@@ -1,19 +1,44 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../Contexts/AuthContext/AuthContext";
 
 const Login = () => {
   const { register, handleSubmit, formState:{errors} } = useForm();
-   const user = useContext(UserContext);
-console.log(user)
 
-  const handleLogin = (data) =>{
+   const {signIn, googleSignIn, facebookSignIn} = useContext(UserContext);
+    const [error, setError] = useState('');
+
+  const handleLogin = (data,event) =>{
 
     const {email, password} = data;
 
+    // email/password login
+    signIn(email, password)
+    .then(result =>{
+        const user = result.user;
+        if(user.uid){
+            toast.success('User created successfully');
+            event.target.reset();
+        }
+    })
+    .catch(e => setError(e.message))
   }
+
+    // Google sign in
+    const handleGoogleSignIn = () =>{
+        googleSignIn()
+        .then(() =>{})
+        .catch(e => setError(e.message))
+    }
+    //Facebook sign in
+    const handleFacebookSignIn = () =>{
+        facebookSignIn()
+        .then(() =>{})
+        .catch(e => setError(e.message))
+    }
 
   return (
     <div className="bg-gradient-to-bl from-secondary to-[#0a3f6b] flex justify-center items-center h-[100vh] lg:h-[90vh] lg:rounded-2xl">
@@ -44,10 +69,11 @@ console.log(user)
           <label role='button' className="text-gray-300 hover:text-info underline text-sm" htmlFor="name">Forgot Your password?</label>
           </div>
           <div className="divider">OR</div>
+          {error && <span className="text-error text-center">{error}</span>}
           <div className="flex justify-center gap-5">
-              <FaFacebook className="text-3xl hover:text-info" role='button'
+              <FaFacebook onClick={handleFacebookSignIn} className="text-3xl hover:text-info" role='button'
               />
-              <FaGoogle className="text-3xl hover:text-info" role='button'
+              <FaGoogle onClick={handleGoogleSignIn} className="text-3xl hover:text-info" role='button'
               />
           </div>
           <p className="text-sm mt-3">Don't have any account? Please <Link className="underline text-info" to='/signup'>register</Link> here.</p>

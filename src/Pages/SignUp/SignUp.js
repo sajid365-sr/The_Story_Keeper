@@ -1,19 +1,58 @@
 
-import React from 'react';
+import React, { useContext, useId, useState } from 'react';
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { UserContext } from '../../Contexts/AuthContext/AuthContext';
 
 const SignUp = () => {
 
     const { register, handleSubmit, formState:{errors} } = useForm();
+    const {user, createUser, updateUser, googleSignIn, facebookSignIn} = useContext(UserContext);
+    const [error, setError] = useState('');
 
-    const handleLogin = (data) =>{
+    const handleLogin = (data,event) =>{
 
         const {name, email, password} = data;
-        console.log(data)
+        
+        // email/password sign in
+        createUser(email, password)
+        .then(result =>{
+           const user = result.user;
+            if(user.uid){
+                toast.success('User created successfully');
+                event.target.reset();
+            }
+        })
+        .catch(e => setError(e.message));
+
+
+         // Update user
+        const userInfo = {
+            displayName:name
+        }
+        updateUser(userInfo)
+        .then(() =>{
+
+        })
+        .catch(e => setError(e.message));
     
       }
+
+      // Google sign in
+      const handleGoogleSignIn = () =>{
+          googleSignIn()
+          .then(() =>{})
+          .catch(e => setError(e.message))
+      }
+
+        //Facebook sign in
+    const handleFacebookSignIn = () =>{
+        facebookSignIn()
+        .then(() =>{})
+        .catch(e => setError(e.message))
+    }
 
     return (
         <div className="bg-gradient-to-bl from-[#0a3f6b] to-secondary flex justify-center items-center h-[100vh] lg:h-[90vh] lg:rounded-2xl">
@@ -53,11 +92,12 @@ const SignUp = () => {
           />
           {errors.password && <span className="text-error">{errors.password?.message}</span>}
           </div>
+          {error && <span className="text-error text-center">{error}</span>}
           <div className="divider">OR</div>
           <div className="flex justify-center gap-5">
-              <FaFacebook className="text-3xl hover:text-info" role='button'
+              <FaFacebook onClick={handleFacebookSignIn} className="text-3xl hover:text-info" role='button'
               />
-              <FaGoogle className="text-3xl hover:text-info" role='button'
+              <FaGoogle onClick={handleGoogleSignIn} className="text-3xl hover:text-info" role='button'
               />
           </div>
           <p className="text-sm mt-3">Already have an account? <Link className="underline text-info" to='/login'>login</Link> here.</p>
