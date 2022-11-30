@@ -10,25 +10,25 @@ const Header = () => {
   const navItem = (
     <>
       <Link
-        className="hover:border-b-2 text-secondary font-medium border-gray-800"
+        className="lg:hover:border-b-2 hover:bg-zinc-300 px-3 lg:px-0 text-secondary mb-5 font-medium border-gray-800"
         to="/home"
       >
         Home
       </Link>
       <Link
-        className="hover:border-b-2 text-secondary font-medium border-gray-800"
+        className="lg:hover:border-b-2 hover:bg-zinc-300 px-3 lg:px-0 text-secondary mb-5 font-medium border-gray-800"
         to="/shop"
       >
         Shop
       </Link>
       <Link
-        className="hover:border-b-2 text-secondary font-medium border-gray-800"
+        className="lg:hover:border-b-2 hover:bg-zinc-300 px-3 lg:px-0 text-secondary mb-5 font-medium border-gray-800"
         to="/blog"
       >
         Blog
       </Link>
       <Link
-        className="hover:border-b-2 text-secondary font-medium border-gray-800"
+        className="lg:hover:border-b-2 hover:bg-zinc-300 px-3 lg:px-0 text-secondary mb-5 font-medium border-gray-800"
         to="/dashboard"
       >
         Dashboard
@@ -46,12 +46,12 @@ const Header = () => {
   return (
     <div>
       <div className="navbar bg-base-100">
-        <div className="navbar-start">
+        <div className="navbar-start lg:w-1/2 w-full">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn  btn-primary bg-opacity-30 lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-5 w-5 text-secondary "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -86,22 +86,23 @@ const Header = () => {
             user?
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar online">
-                <div className="w-10 rounded-full">
+                <div className="w-10 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
                   <img src={user.photoURL ? user.photoURL : <FaUserAlt/>} alt='user profile' />
                 </div>
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content -mr-10 px-8 py-6 shadow bg-secondary bg-opacity-70 rounded-box w-56"
+                className="menu menu-compact dropdown-content lg:-mr-10 px-5 py-6 shadow bg-secondary  rounded-box w-56"
               >
                 <li className="text-gray-300">
-                  {user.email}
+                  <p className="cursor-default">{user.email}</p>
+                  <p className="cursor-default">{user.displayName}</p>
                 </li>
                 <li role='button' className="text-gray-300">
-                Settings
+                <p>Settings</p>
                 </li>
                 <li role='button' onClick={handleLogOut}>
-                  Logout
+                  <p>Logout</p>
                 </li>
               </ul>
             </div>
@@ -120,44 +121,6 @@ const Header = () => {
             </>
 
         }
-
-          {/* {user ? (
-            <Link onClick={handleLogOut}>
-              <button className="btn btn-info px-5 text-base text-gray-700">
-                Logout
-              </button>
-            </Link>
-          ) : (
-            <Link to="/login">
-              <button className="btn btn-info px-5 text-base text-gray-700">
-                Login
-              </button>
-            </Link>
-          )} */}
-
-          {/* {user && (
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar online">
-                <div className="w-10 rounded-full">
-                  <img src={user.photoURL ? user.photoURL : <FaUserAlt/>} alt='user profile' />
-                </div>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-compact dropdown-content -mr-10 px-8 py-6 shadow bg-secondary bg-opacity-70 rounded-box w-56"
-              >
-                <li className="text-gray-300">
-                  {user.email}
-                </li>
-                <li role='button' className="text-gray-300">
-                Settings
-                </li>
-                <li>
-                  Logout
-                </li>
-              </ul>
-            </div>
-          )} */}
         </div>
       </div>
     </div>
