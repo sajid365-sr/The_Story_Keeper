@@ -35,10 +35,10 @@ const visible = UseAnimation(serviceRef);
     ]
     return (
         
-        <div ref={serviceRef} className={`max-w-screen-xl mx-auto mb-40 ${visible?'translate-y-0 transition-all duration-1000 opacity-100':'translate-y-24 opacity-0'}`}>
+        <div ref={serviceRef} className={`max-w-screen-xl mx-auto mb-52 ${visible?'translate-y-0 transition-all duration-1000 opacity-100':'translate-y-24 opacity-0'}`}>
             <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2'>
             {
-                services.map(service => <div id={service.id} className="card w-96 pb-8 bg-base-100 shadow-xl">
+                services.map(service => <div id={service.id} className="card w-96 pb-8 bg-base-100 shadow-xl mx-auto mb-20 lg:mb-0">
                 <figure className="px-10 pt-10">
                   <img className= "w-[80px]"  src={service.img} alt="Shoes" />
                 </figure>
@@ -47,7 +47,7 @@ const visible = UseAnimation(serviceRef);
                   <p className='text-gray-600 font-medium mt-10'>{service.about}</p>
                   
                 </div>
-                <p className={`text-gray-600 flex justify-center items-center gap-3 ${visible?'translate-x-0 opacity-100 transition-all duration-1000':'-translate-x-40 opacity-0'}`}>Read More <HiArrowNarrowRight /></p>
+                <p className={`text-gray-600 flex justify-center cursor-pointer hover:text-green-700 items-center gap-3 ${visible?'translate-x-0 opacity-100 transition-all duration-1000':'-translate-x-40 opacity-0'}`}>Read More <HiArrowNarrowRight /></p>
               </div>)
             }
         </div>
