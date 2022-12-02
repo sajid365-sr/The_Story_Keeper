@@ -11,7 +11,7 @@ const Footer = () => {
 
   return (
        
-       <div className={visible? 'mb-0 transition-all duration-1000 opacity-100' : 'mb-40 opacity-30 '} ref={footerRef}>
+       <div className={visible? 'translate-x-0 transition-all duration-1000 opacity-100' : '-translate-x-[20%] opacity-30 '} ref={footerRef}>
       <footer className="footer footer-center p-10 bg-secondary text-base-content">
         <div className="grid grid-flow-col gap-4">
           <Link to="/home" className="link link-hover">
