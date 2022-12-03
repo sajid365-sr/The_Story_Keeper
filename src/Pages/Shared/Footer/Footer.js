@@ -11,8 +11,8 @@ const Footer = () => {
 
   return (
        
-       <div className={visible? 'translate-x-0 transition-all duration-1000 opacity-100' : '-translate-x-[20%] opacity-30 '} ref={footerRef}>
-      <footer className="footer footer-center p-10 bg-secondary text-base-content">
+       <section className={` ${visible? 'translate-x-0 transition-all duration-1000 opacity-100' : '-translate-x-[20%] opacity-30'}`} ref={footerRef}>
+      <footer className="footer footer-center px-10 py-20 bg-secondary text-base-content">
         <div className="grid grid-flow-col gap-4">
           <Link to="/home" className="link link-hover">
             Home
@@ -44,7 +44,7 @@ const Footer = () => {
           <p>Copyright © 2022 - All right reserved by The Story Keeper</p>
         </div>
       </footer>
-    </div>
+    </section>
        
      
    

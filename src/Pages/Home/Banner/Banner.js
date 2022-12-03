@@ -11,8 +11,8 @@ import "./Banner.css";
 
 const Banner = () => {
   return (
-    <div>
-      <div className="lg:h-[80vh] h-[40vh] w-11/12 lg:max-w-screen-xl mx-auto mb-52">
+  
+      <section className="lg:h-[80vh] h-[40vh] w-11/12 lg:max-w-screen-xl mx-auto mb-52">
         <Carousel slideInterval={5000}>
           <div
             style={{
@@ -110,8 +110,8 @@ const Banner = () => {
             </div>
           </div>
         </Carousel>
-      </div>
-    </div>
+      </section>
+    
   );
 };
 

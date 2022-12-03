@@ -46,7 +46,7 @@ const Header = () => {
   };
 
   return (
-    <div className="max-w-screen-xl  mx-auto">
+    <section className="max-w-screen-xl  mx-auto">
       <div className="navbar bg-base-100">
         <div className="navbar-start lg:w-1/2 w-full">
           <div className="dropdown ">
@@ -157,7 +157,7 @@ const Header = () => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
