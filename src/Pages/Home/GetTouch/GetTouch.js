@@ -15,7 +15,7 @@ const GetTouch = () => {
             media:'Email Us',
             address:'info@gmail.com',
             animation:'-translate-x-36 opacity-0',
-            bgClass:'bg-[#6b0942]'
+            
         },
         {
             id:2,
@@ -23,7 +23,7 @@ const GetTouch = () => {
             media:'Call Us',
             address:'+880 16****65',
             animation:'translate-x-36 opacity-0',
-            bgClass:'bg-[#310e06]'
+            
         },
     ]
 
@@ -50,7 +50,7 @@ const GetTouch = () => {
         
         {
             contacts.map(contact => <div key={contact.id}
-                className={`${contact.bgClass} text-gray-300 text-2xl px-8 font-semibold py-8 rounded-md w-full ${
+                className={`bg-[#6c5f90] text-gray-200 text-2xl px-8 font-semibold py-8 rounded-md w-full ${
                   visible
                     ? "translate-x-0 opacity-100 transition-all duration-1000"
                     : `${contact.animation}`

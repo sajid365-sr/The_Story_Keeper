@@ -88,7 +88,7 @@ const PricePlan = () => {
             </div>
             <ul className="my-7 space-y-5">
               {plan.features.map((feature, i) => (
-                <li key={i} className="flex space-x-3">
+                <li key={i} className={`flex space-x-3 ${visible?'translate-x-0 translate-y-0 transition-all duration-1000':`${plan.animation}`}`}>
                   <FaCheckCircle className="text-blue-600 " />
                   <span className="text-base text-gray-600 font-normal leading-tight">
                     {feature}
