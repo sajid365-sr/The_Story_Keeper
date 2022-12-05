@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import {
   HiArrowNarrowRight,
   HiOutlinePhone,
   HiOutlineMail,
+  HiShoppingCart,
 } from "react-icons/hi";
 import { FaCheckCircle } from "react-icons/fa";
+import BookingModal from "./BookingModal";
 
 const BookDetails = () => {
+    const [closeModal, setCloseModal] = useState(false);
+
+  const book = useLoaderData();
   const {
     author,
     category,
@@ -18,19 +23,17 @@ const BookDetails = () => {
     phone,
     picture,
     publishYear,
-    ratings,
     resalePrice,
     sellerName,
     sellerVerified,
     title,
-  } = useLoaderData();
-  console.log(useLoaderData());
+  } = book;
 
   return (
     <section className="bg-zinc-300 mb-36 mt-20">
-      <div className="max-w-screen-xl py-24 mx-auto flex gap-20">
+      <div className="max-w-screen-xl py-24 mx-auto flex lg:flex-row flex-col gap-20">
         {/* Image */}
-        <div className="bg-white p-14 w-1/2">
+        <div className="bg-white p-14 lg:w-1/2 w-11/12 mx-auto">
           <img
             className="mx-auto w-2/3 hover:-rotate-6 transition-all duration-500"
             src={picture}
@@ -38,7 +41,7 @@ const BookDetails = () => {
           />
         </div>
         {/* Descriptions */}
-        <div className="w-1/2">
+        <div className="lg:w-1/2 w-11/12 mx-auto">
           <div className="flex gap-3 items-center mb-5">
             <p className="text-3xl  text-gray-600">Books Info</p>
             <HiArrowNarrowRight className="text-gray-800 text-2xl mt-2" />
@@ -69,31 +72,54 @@ const BookDetails = () => {
         </div>
       </div>
       {/* Seller Info */}
-      <div className="max-w-screen-xl pb-16 mx-auto">
-        <div className="flex gap-3 mb-3 items-center">
-          <p className="text-3xl  text-gray-600">Seller Info</p>
-          <HiArrowNarrowRight className="text-gray-800 text-2xl mt-2" />
+      <div className="max-w-screen-xl px-20 lg:px-0 flex items-center gap-32 pb-16 mx-auto">
+        <div>
+          <p className="text-3xl flex gap-3 mb-3 items-center text-gray-600">
+            Seller Info{" "}
+            <span>
+              <HiArrowNarrowRight className="text-gray-800 text-2xl mt-2" />
+            </span>
+          </p>
+
+          <div>
+            <div className="text-gray-600 flex gap-1">
+              <span className="text-lg font-medium">Seller Name:</span>{" "}
+              <p className="flex items-center gap-2">
+                {sellerVerified && <FaCheckCircle className="text-blue-600" />}
+                <span>{sellerName}</span>{" "}
+              </p>
+            </div>
+            <div className="text-gray-700 flex items-center gap-4">
+              <HiOutlinePhone />
+              <p>{phone}</p>
+            </div>
+            <div className="text-gray-700 flex items-center gap-4">
+              <HiOutlineMail />
+              <p>{email}</p>
+            </div>
+            <p className="text-gray-700 font-medium">Location: {location}</p>
+          </div>
         </div>
         <div>
-          <div className="text-gray-600 flex gap-1">
-            <span className="text-lg font-medium">Seller Name:</span>{" "}
-            <p className="flex items-center gap-2">
-            {sellerVerified && <FaCheckCircle className="text-blue-600" />}
-            <span>{sellerName}</span>{" "}
-            </p>
-            
-          </div>
-          <div className="text-gray-700 flex items-center gap-4">
-            <HiOutlinePhone />
-            <p>{phone}</p>
-          </div>
-          <div className="text-gray-700 flex items-center gap-4">
-            <HiOutlineMail />
-            <p>{email}</p>
-          </div>
-          <p className="text-gray-700 font-medium">Location: {location}</p>
+          <label
+            htmlFor="buyBook"
+            className="btn rounded-none text-gray-600 hover:bg-gray-800 hover:text-white"
+          >
+            {" "}
+            <HiShoppingCart className="mr-3 text-xl" /> Buy Now
+          </label>
         </div>
       </div>
+
+      {/* Modal */}
+
+     {
+         !closeModal &&
+         <BookingModal book={book}
+         closeModal={closeModal}
+         setCloseModal={setCloseModal}
+         ></BookingModal>
+     }
     </section>
   );
 };
