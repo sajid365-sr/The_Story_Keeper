@@ -25,7 +25,7 @@ const Shop = () => {
               {category.map((books) => (
                 <div className= "card bg-zinc-200 shadow-xl rounded-md ">
                   <figure className="py-8 bg-white">
-                    <Link>
+                    <Link to={`/books/${books._id}`}>
                     <img
                       src={books.picture}
                       alt="books"
@@ -34,7 +34,7 @@ const Shop = () => {
                   </figure>
                   <div className="card-body px-3 pt-2 pb-3">
                    
-                      <Link className="card-title hover:text-[#113ebb] text-2xl font-bold text-gray-800">{books.title}</Link>
+                      <Link to={`/books/${books._id}`} className="card-title hover:text-[#113ebb] text-2xl font-bold text-gray-800">{books.title}</Link>
                     
                     <div className="text-gray-600">
                       <p className="mb-3">{books.author}</p>

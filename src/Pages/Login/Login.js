@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Contexts/AuthContext/AuthContext";
 
 const Login = () => {
@@ -10,6 +10,9 @@ const Login = () => {
 
    const {signIn, googleSignIn, facebookSignIn} = useContext(UserContext);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
   const handleLogin = (data,event) =>{
 
@@ -20,8 +23,9 @@ const Login = () => {
     .then(result =>{
         const user = result.user;
         if(user.uid){
-            toast.success('User created successfully');
+            toast.success('User login successfully');
             event.target.reset();
+            navigate(from, {replace:true});
         }
     })
     .catch(e => setError(e.message))
@@ -30,13 +34,17 @@ const Login = () => {
     // Google sign in
     const handleGoogleSignIn = () =>{
         googleSignIn()
-        .then(() =>{})
+        .then(() =>{
+          navigate(from, {replace:true});
+        })
         .catch(e => setError(e.message))
     }
     //Facebook sign in
     const handleFacebookSignIn = () =>{
         facebookSignIn()
-        .then(() =>{})
+        .then(() =>{
+          navigate(from, {replace:true});
+        })
         .catch(e => setError(e.message))
     }
 

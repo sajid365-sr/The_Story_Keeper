@@ -19,7 +19,7 @@ const Categories = () => {
                {
                    books.map(book =>  <div className= "card bg-zinc-200 shadow-xl rounded-md ">
                    <figure className="py-8 bg-white">
-                     <Link>
+                     <Link to={`/books/${book._id}`}>
                      <img
                        src={book.picture}
                        alt="books"
@@ -28,7 +28,7 @@ const Categories = () => {
                    </figure>
                    <div className="card-body px-3 pt-2 pb-3">
                     
-                       <Link className="card-title hover:text-[#113ebb] text-2xl font-bold text-gray-800">{book.title}</Link>
+                       <Link to={`/books/${books._id}`} className="card-title hover:text-[#113ebb] text-2xl font-bold text-gray-800">{book.title}</Link>
                      
                      <div className="text-gray-600">
                        <p className="mb-3">{book.author}</p>
