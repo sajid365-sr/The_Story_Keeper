@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layouts/Main/Main";
+import AdvertiseItems from "../../Pages/AdvertiseItems/AdvertiseItems";
 import Blog from "../../Pages/Blog/Blog";
+import Categories from "../../Pages/Categories/Categories";
 import Home from "../../Pages/Home/Home";
 
 import Login from "../../Pages/Login/Login";
@@ -22,7 +24,12 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/shop',
+                loader: () => fetch('http://localhost:5000/allBooks'),
                 element:<Shop></Shop>
+            },
+            {
+                path:'/advertise',
+                element:<AdvertiseItems></AdvertiseItems>
             },
             {
                 path:'/blog',
@@ -35,6 +42,13 @@ export const router = createBrowserRouter([
             {
                 path:'/signup',
                 element:<SignUp></SignUp>
+            },
+            {
+                path:'/category/:id',
+                loader: ({params})=> fetch(`http://localhost:5000/category/${params.id}`),
+                element:<Categories></Categories>
+
+
             }
         ]
         

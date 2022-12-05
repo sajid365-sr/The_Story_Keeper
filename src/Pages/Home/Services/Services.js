@@ -16,7 +16,7 @@ const Services = () => {
       title: "Used Book Buying",
       about:
         "At our store, readers and students can buy books that have been sent to us as a charity.",
-      animation:'translate-y-[70%] opacity-0'
+      animation:'translate-y-[60%] opacity-0'
     },
     {
       id: 2,

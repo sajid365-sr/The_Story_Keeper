@@ -9,28 +9,37 @@ const Header = () => {
   const [viewProfile, setViewProfile] = useState(false);
   const [viewNav, setViewNav] = useState(false);
 
+  const navStyle = 'lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-secondary lg:mb-0 mb-5 font-medium border-gray-800'
+
   const navItem = (
+
     <>
       <Link
-        className={`lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-secondary lg:mb-0 mb-5 font-medium border-gray-800 ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[80%]'}`}
+        className={` ${navStyle} ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[80%]'}`}
         to="/home"
       >
         Home
       </Link>
       <Link
-        className={`lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-secondary lg:mb-0 mb-5 font-medium border-gray-800 ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[70%]'}`}
+        className={`${navStyle} ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[75%]'}`}
         to="/shop"
       >
         Shop
       </Link>
       <Link
-        className={`lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-secondary lg:mb-0 mb-5 font-medium border-gray-800 ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[60%]'}`}
+        className={`${navStyle} ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[70%]'}`}
+        to="/advertise"
+      >
+        Advertise Items
+      </Link>
+      <Link
+        className={`${navStyle} ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[65%]'}`}
         to="/blog"
       >
         Blog
       </Link>
       <Link
-        className={`lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-secondary lg:mb-0 mb-5 font-medium border-gray-800 ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[50%]'}`}
+        className={`${navStyle} ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[60%]'}`}
         to="/dashboard"
       >
         Dashboard
@@ -48,7 +57,7 @@ const Header = () => {
   return (
     <section className="max-w-screen-xl  mx-auto">
       <div className="navbar bg-base-100">
-        <div className="navbar-start lg:w-1/2 w-full">
+        <div className="w-[20%] ">
           <div className="dropdown ">
             <label
             onFocus={ () => setViewNav(true)}
@@ -72,6 +81,8 @@ const Header = () => {
               </svg>
             </label>
             <ul
+            // onFocus={ () => setViewNav(true)}
+            // onBlur={ () => setViewNav(false)}
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
@@ -85,10 +96,11 @@ const Header = () => {
             </p>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu gap-10  menu-horizontal p-0">{navItem}</ul>
+        <div className="w-[60%] hidden lg:block">
+          <ul className="flex w-full justify-around">{navItem}</ul>
+          
         </div>
-        <div className="navbar-end">
+        <div className="w-[20%] justify-end">
           {user ? (
             <div className="dropdown dropdown-left">
               <label
