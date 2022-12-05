@@ -17,7 +17,7 @@ const Categories = () => {
             </h1>
            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                {
-                   books.map(book =>  <div className= "card bg-zinc-200 shadow-xl rounded-md ">
+                   books.map(book =>  <div key={book._id} className= "card bg-zinc-200 shadow-xl rounded-md ">
                    <figure className="py-8 bg-white">
                      <Link to={`/books/${book._id}`}>
                      <img

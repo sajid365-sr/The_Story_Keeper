@@ -2,69 +2,80 @@ import React, { useContext, useId, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Contexts/AuthContext/AuthContext";
+import UseToken from "../../Hooks/UseToken";
 
 const SignUp = () => {
-
- 
- const {register, handleSubmit,formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { createUser, updateUser, googleSignIn, facebookSignIn } =
     useContext(UserContext);
 
   const [error, setError] = useState("");
   const [check, setCheck] = useState(false);
+  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState('');
+  const token = UseToken(userEmail,{new : true});
+
+
+  if(token){
+    navigate('/');
+  }
+
 
   const handleLogin = (data, event) => {
     let { name, email, password } = data;
-    const newUser = {
-      name,
-      email,
-      type: `${check?'seller':'buyer'}`
-    }
-    
-    
-  
+
     // email/password sign in
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         if (user.uid) {
-         
-            fetch('http://localhost:5000/users', {
-              method:'post',
-              headers:{
-                'content-type':'application/json',
-              },
-              body:JSON.stringify({newUser})
-            })
-            .then(res => res.json())
-            .then(data => {
-              
-                if(data.acknowledged){
-                    
-                  toast.success("User created successfully");
-                  setCheck(false);
-                  event.target.reset();
-                }
-                
-                
-            })
-          
-         
+          toast.success("User created successfully");
+          setCheck(false);
+          event.target.reset();
         }
-      })
-      .catch((e) => setError(e.message));
 
-    // Update user
-    const userInfo = {
-      displayName: name,
-    };
-    updateUser(userInfo)
-      .then(() => {})
+        // Update user
+        const userInfo = {
+          displayName: name,
+        };
+        updateUser(userInfo)
+          .then(() => {
+            saveUser(name, email);
+          })
+          .catch((e) => setError(e.message));
+      })
+
       .catch((e) => setError(e.message));
   };
 
+  const saveUser = (name, email) => {
+    const newUser = {
+      name,
+      email,
+      type: `${check ? "seller" : "buyer"}`,
+    };
+
+    fetch("http://localhost:5000/users", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ newUser }),
+    })
+    .then((res) => res.json())
+    .then(data => {
+      if(data.acknowledged){
+        setUserEmail(email);
+      }
+    })
+
+  };
   // Google sign in
   const handleGoogleSignIn = () => {
     googleSignIn()
@@ -80,7 +91,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="bg-gradient-to-bl from-[#0a3f6b] to-secondary flex justify-center items-center  h-[100vh] lg:h-[95vh] lg:rounded-2xl my-24">
+    <div className="bg-gradient-to-bl from-[#0a3f6b] to-secondary flex justify-center items-center  h-[100vh] lg:h-[95vh] lg:rounded-2xl my-12">
       <div className="lg:w-2/6 w-10/12 bg-info py-10 rounded-lg  bg-opacity-30">
         <h2 className="text-center mb-10 text-5xl font-Kaushan text-gray-900">
           SignUp
@@ -138,8 +149,15 @@ const SignUp = () => {
           {error && <span className="text-error text-center">{error}</span>}
           <div className="form-control">
             <label className="label cursor-pointer">
-              <span className="label-text text-white font-medium tracking-widest">Seller Account?</span>
-              <input onClick={() => setCheck(true)} type="checkbox" name="checkbox"  className="toggle toggle-secondary"  />
+              <span className="label-text text-white font-medium tracking-widest">
+                Seller Account?
+              </span>
+              <input
+                onClick={() => setCheck(true)}
+                type="checkbox"
+                name="checkbox"
+                className="toggle toggle-secondary"
+              />
             </label>
           </div>
 

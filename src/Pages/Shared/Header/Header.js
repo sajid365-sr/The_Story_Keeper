@@ -38,12 +38,15 @@ const Header = () => {
       >
         Blog
       </Link>
-      <Link
+      {
+        user &&
+        <Link
         className={`${navStyle} ${viewNav? 'translate-x-0 transition-all duration-1000':'translate-x-[60%]'}`}
         to="/dashboard"
       >
         Dashboard
       </Link>
+      }
     </>
   );
 

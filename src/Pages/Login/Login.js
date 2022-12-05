@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Contexts/AuthContext/AuthContext";
+import UseToken from "../../Hooks/UseToken";
 
 const Login = () => {
   const { register, handleSubmit, formState:{errors} } = useForm();
@@ -13,6 +14,13 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const [userEmail, setUserEmail] = useState('');
+    const token = UseToken(userEmail,{new : false});
+
+
+if(token){
+  navigate(from, {replace:true});
+}
 
   const handleLogin = (data,event) =>{
 
@@ -23,13 +31,15 @@ const Login = () => {
     .then(result =>{
         const user = result.user;
         if(user.uid){
+              setUserEmail(email);
             toast.success('User login successfully');
             event.target.reset();
-            navigate(from, {replace:true});
+            
         }
     })
     .catch(e => setError(e.message))
   }
+  
 
     // Google sign in
     const handleGoogleSignIn = () =>{

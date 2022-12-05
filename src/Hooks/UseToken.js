@@ -1,12 +1,12 @@
 
 import { useEffect, useState } from 'react';
 
-const UseToken = ({email}) => {
+const UseToken = (email,state) => {
     const [token, setToken] = useState("");
-
+console.log(state)
   useEffect(() => {
     if (email) {
-      fetch(`https://doctors-portal-server-side-gray.vercel.app/jwt?email=${email}`)
+      fetch(`http://localhost:5000/jwt?email=${email}&state=${state.new}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.accessToken) {
@@ -15,7 +15,7 @@ const UseToken = ({email}) => {
           }
         });
     }
-  }, [email]);
+  }, [email,state]);
   return token;
 };
 

@@ -11,7 +11,7 @@ import BookingModal from "./BookingModal";
 
 const BookDetails = () => {
     const [closeModal, setCloseModal] = useState(false);
-
+    
   const book = useLoaderData();
   const {
     author,
@@ -102,6 +102,7 @@ const BookDetails = () => {
         </div>
         <div>
           <label
+          onClick={() => setCloseModal(false)}
             htmlFor="buyBook"
             className="btn rounded-none text-gray-600 hover:bg-gray-800 hover:text-white"
           >
@@ -115,7 +116,9 @@ const BookDetails = () => {
 
      {
          !closeModal &&
-         <BookingModal book={book}
+         <BookingModal
+         
+          book={book}
          closeModal={closeModal}
          setCloseModal={setCloseModal}
          ></BookingModal>

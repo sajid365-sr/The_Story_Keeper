@@ -4,7 +4,7 @@ import { UserContext } from "../../Contexts/AuthContext/AuthContext";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 
-const BookingModal = ({book, closeModal, setCloseModal}) => {
+const BookingModal = ({book, setCloseModal}) => {
     const {title, resalePrice} = book;
 
     const { user } = useContext(UserContext);
@@ -161,6 +161,7 @@ const BookingModal = ({book, closeModal, setCloseModal}) => {
               )}
             </div>
           <div className="modal-action">
+              <button onClick={ () => setCloseModal(true)} className='btn rounded-none text-gray-600 hover:bg-gray-800 hover:text-white w-40'>Cancel</button>
             <label
               htmlFor="buyBook">
               <button className="btn rounded-none text-gray-600 hover:bg-gray-800 hover:text-white w-40" type='submit'>Submit</button>

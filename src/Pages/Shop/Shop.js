@@ -13,8 +13,8 @@ const Shop = () => {
         <section className="max-w-screen-xl py-10 mb-52 mx-auto">
       
       
-        {books.map((category) => (
-          <div className="mb-24">
+        {books.map((category,i) => (
+          <div key={i} className="mb-24">
             <Link to={`/category/${category[0].categoryId}`} className="items-center text-gray-700 hover:text-blue-600 hover:underline inline-flex  mb-2 gap-1 ">
               <h1 className="text-3xl  font-semibold ">
                 {category[0].category}{" "}
@@ -23,7 +23,7 @@ const Shop = () => {
             </Link>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {category.map((books) => (
-                <div className= "card bg-zinc-200 shadow-xl rounded-md ">
+                <div key={books._id} className= "card bg-zinc-200 shadow-xl rounded-md ">
                   <figure className="py-8 bg-white">
                     <Link to={`/books/${books._id}`}>
                     <img
