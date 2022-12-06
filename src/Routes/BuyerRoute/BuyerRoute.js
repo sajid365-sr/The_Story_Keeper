@@ -5,7 +5,7 @@ import { UserContext } from '../../Contexts/AuthContext/AuthContext';
 import UseVerifyUser from '../../Hooks/UseVerifyUser';
 import Loading from '../../Pages/Shared/Loading/Loading';
 
-const AdminRoute = ({children}) => {
+const BuyerRoute = ({children}) => {
     const {user, loading} = useContext(UserContext);
     const [userType, isUserLoading] = UseVerifyUser(user?.email);
     const location = useLocation();
@@ -13,10 +13,10 @@ const AdminRoute = ({children}) => {
     if(loading || isUserLoading){
         return <Loading></Loading>
     }
-    if(user && userType === 'admin'){
+    if(user && userType === 'buyer'){
         return children;
     }
     return <Navigate to='/login' state={{from:location}} replace></Navigate>
 };
 
-export default AdminRoute;
+export default BuyerRoute;
