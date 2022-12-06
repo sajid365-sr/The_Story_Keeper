@@ -26,7 +26,7 @@ const Banner = () => {
               <div className="w-3/5 px-10 py-14 ">
                 <p className="uppercase font-Kaushan">Chapter one</p>
 
-                <h1 className="text-5xl text-white">Best condition <span className="text-secondary bg-amber-600 px-5">used books</span></h1>
+                <h1 className="text-5xl text-white">Best condition <span className="text-[#291334] bg-amber-600 px-5">used books</span></h1>
 
                 <p className="my-10 text-gray-200 tracking-widest">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -61,7 +61,7 @@ const Banner = () => {
 
                 <div className="text-5xl text-white">
                  <p className="mb-8"> Get Up To{" "}
-                  <span className="bg-secondary px-5 bg-opacity-70 font-semibold text-amber-500">
+                  <span className="bg-[#291334] px-5 bg-opacity-70 font-semibold text-amber-500">
                     50% discount
                   </span>{" "}</p>
                   

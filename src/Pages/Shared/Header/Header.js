@@ -10,7 +10,7 @@ const Header = () => {
   const [viewNav, setViewNav] = useState(false);
 
   const navStyle =
-    "lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-secondary lg:mb-0 mb-5 font-medium border-gray-800";
+    "lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-[#291334] lg:mb-0 mb-5 font-medium border-gray-800";
 
   const navItem = (
     <>
@@ -84,17 +84,14 @@ const Header = () => {
           <div className="dropdown"
            onBlur={() => setViewNav(false)}
           >
-
-           
-
             <label
              onClick={() => setViewNav(true)}
               tabIndex={0}
-              className="btn  btn-primary bg-opacity-30 lg:hidden"
+              className="btn  btn-info hover:text-gray-100 bg-opacity-30 lg:hidden"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-secondary "
+                className="h-5 w-5  "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -115,12 +112,12 @@ const Header = () => {
               {navItem}
               <div className="flex mb-3 ml-2  gap-3">
                 <Link to="/login">
-                  <button className="btn px-5 text-base text-gray-800 btn-sm rounded-sm hover:text-white">
+                  <button className="btn px-5 text-base text-gray-300 bg-gray-900 btn-sm rounded-sm hover:text-white">
                     Login
                   </button>
                 </Link>
                 <Link to="/signup">
-                  <button className="btn px-5 text-base text-gray-800 btn-sm rounded-sm hover:text-white">
+                  <button className="btn px-5 text-base text-gray-300 bg-gray-900 btn-sm rounded-sm hover:text-white">
                     SignUp
                   </button>
                 </Link>
@@ -129,7 +126,7 @@ const Header = () => {
           </div>
           <Link className="flex items-center" to="/">
             <img className="w-[50px]" src={logo} alt="" />
-            <p className="text-xl font-Kaushan text-secondary font-semibold">
+            <p className="text-xl font-Kaushan text-[#291334] font-semibold">
               The Story Keeper
             </p>
           </Link>
@@ -147,7 +144,7 @@ const Header = () => {
                 tabIndex={0}
                 className="btn btn-ghost btn-circle avatar online"
               >
-                <div className="w-8 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
+                <div className="w-8 rounded-full ring ring-[#291334] ring-offset-base-100 ring-offset-2">
                   <img
                     src={user.photoURL ? user.photoURL : <FaUserAlt />}
                     alt="user profile"
@@ -156,7 +153,7 @@ const Header = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu absolute menu-compact dropdown-content px-5 py-6 shadow bg-secondary  rounded-box w-56"
+                className="menu absolute menu-compact dropdown-content px-5 py-6 shadow bg-[#291334]  rounded-box w-56"
               >
                 <li
                   className={`text-gray-300 relative ${
@@ -187,7 +184,7 @@ const Header = () => {
                   role="button"
                   onClick={handleLogOut}
                 >
-                  <p>Logout</p>
+                  <p className="text-gray-300">Logout</p>
                 </li>
               </ul>
             </div>

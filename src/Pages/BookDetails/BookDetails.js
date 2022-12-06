@@ -104,7 +104,7 @@ const BookDetails = () => {
           <label
           onClick={() => setCloseModal(false)}
             htmlFor="buyBook"
-            className="btn rounded-none text-gray-600 hover:bg-gray-800 hover:text-white"
+            className="btn rounded-none text-gray-300 hover:bg-gray-800 hover:text-white"
           >
             {" "}
             <HiShoppingCart className="mr-3 text-xl" /> Buy Now

@@ -12,36 +12,36 @@ const Footer = () => {
   return (
        
        <section className={` ${visible? 'translate-x-0 transition-all duration-1000 opacity-100' : '-translate-x-[20%] opacity-30'}`} ref={footerRef}>
-      <footer className="footer footer-center px-10 py-20 bg-secondary text-base-content">
+      <footer className="footer footer-center px-10 py-20 bg-[#291334] text-base-content">
         <div className="grid grid-flow-col gap-4">
-          <Link to="/home" className="link link-hover">
+          <Link to="/home" className="link text-gray-300 text-base tracking-widest link-hover">
             Home
           </Link>
-          <Link to="/" className="link link-hover">
+          <Link to="/" className="link text-gray-300 text-base tracking-widest link-hover">
             Contacts
           </Link>
-          <Link to="/" className="link link-hover">
+          <Link to="/" className="link text-gray-300 text-base tracking-widest link-hover">
             About Us
           </Link>
-          <Link to="/" className="link link-hover">
+          <Link to="/" className="link text-gray-300 text-base tracking-widest link-hover">
             Privacy Policy
           </Link>
         </div>
         <div>
           <div className={`grid grid-flow-col gap-4 ${visible? 'translate-x-0 transition-all duration-1000':'-translate-x-[30vw]'}`}>
             <a href="https://www.facebook.com/sajid365.sr" target="_self">
-              <FaFacebook className="text-2xl hover:text-primary" />
+              <FaFacebook className="text-2xl text-gray-400 hover:text-white" />
             </a>
             <a href="https://twitter.com/sajid365_sr" target="_self">
-              <FaTwitter className="text-2xl hover:text-primary" />
+              <FaTwitter className="text-2xl text-gray-400 hover:text-white" />
             </a>
             <a href="https://www.linkedin.com/in/sajid365-sr" target="_self">
-              <FaLinkedinIn className="text-2xl hover:text-primary" />
+              <FaLinkedinIn className="text-2xl text-gray-400 hover:text-white" />
             </a>
           </div>
         </div>
         <div>
-          <p>Copyright © 2022 - All right reserved by The Story Keeper</p>
+          <p className="text-gray-400">Copyright © 2022 - All right reserved by The Story Keeper</p>
         </div>
       </footer>
     </section>

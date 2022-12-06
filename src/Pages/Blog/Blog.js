@@ -3,7 +3,7 @@ import React from "react";
 const Blog = () => {
   return (
     <div className="container mx-auto mb-24">
-      <h3 className="text-center text-secondary my-10 lg:text-4xl text-3xl font-semibold">
+      <h3 className="text-center text-[#291334] my-10 lg:text-4xl text-3xl font-semibold">
         Some Important Questions You <br />
         Should Know About !!
       </h3>
@@ -20,7 +20,7 @@ const Blog = () => {
           <li>Global state</li>
           <li>Server state</li>
           <li>URL state</li>
-          <p className="text-secondary mt-5 text-lg text-medium underline">
+          <p className="text-[#291334] mt-5 text-lg text-medium underline">
             Local (UI) state
           </p>
           <p>
@@ -31,7 +31,7 @@ const Blog = () => {
             submission, when the form is disabled and the values of a form’s
             inputs.
           </p>
-          <p className="text-secondary mt-5 text-lg text-medium underline">
+          <p className="text-[#291334] mt-5 text-lg text-medium underline">
             Global (UI) state
           </p>
           <p>
@@ -43,7 +43,7 @@ const Blog = () => {
             application. Sometimes state we think should be local might become
             global.
           </p>
-          <p className="text-secondary mt-5 text-lg text-medium underline">
+          <p className="text-[#291334] mt-5 text-lg text-medium underline">
             Server state
           </p>
           <p>
@@ -55,7 +55,7 @@ const Blog = () => {
             loading and error state. Fortunately there are tools such as SWR and
             React Query that make managing server state much easier.
           </p>
-          <p className="text-secondary mt-5 text-lg text-medium underline">
+          <p className="text-[#291334] mt-5 text-lg text-medium underline">
             URL state
           </p>
           <p>
@@ -137,7 +137,7 @@ const Blog = () => {
           </p>
           <p>
             <a
-              className="link  link-info"
+              className="link  link-primary"
               href="https://reactjs.org/docs/rendering-elements.html"
             >
               React Elements
@@ -150,7 +150,7 @@ const Blog = () => {
             elements that contain HTML and JavaScript at the same time.
             <br /> <br />
             <a
-              className="link  link-info"
+              className="link  link-primary"
               href="https://reactjs.org/docs/components-and-props.html"
             >
               Components
@@ -180,7 +180,7 @@ const Blog = () => {
             most seamless experience, but plain JavaScript is also supported.
             Angular templates are written in HTML but can also include{" "}
             <a
-              className="link  link-info"
+              className="link  link-primary"
               href="https://angular.io/guide/template-syntax"
             >
               Angular template syntax
@@ -197,7 +197,7 @@ const Blog = () => {
             Vue’s templating syntax lets you create View components, and it
             combines familiar HTML with special directives and features. This{" "}
             <a
-              className="link  link-info"
+              className="link  link-primary"
               href="https://v3.vuejs.org/guide/template-syntax.html"
             >
               templating syntax
@@ -205,7 +205,7 @@ const Blog = () => {
             is preferred, even though raw JavaScript and JSX are also supported.
             <br /> <br />
             <a
-              className="link  link-info"
+              className="link  link-primary"
               href="https://v3.vuejs.org/guide/component-basics.html"
             >
               Components
@@ -213,7 +213,7 @@ const Blog = () => {
             in Vue are small, self-contained, and can be reused throughout the
             application.{" "}
             <a
-              className="link  link-info"
+              className="link  link-primary"
               href="https://v3.vuejs.org/guide/single-file-component.html"
             >
               Single File Components

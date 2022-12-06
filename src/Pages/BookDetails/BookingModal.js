@@ -1,11 +1,11 @@
 
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from "../../Contexts/AuthContext/AuthContext";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 
 const BookingModal = ({book, setCloseModal}) => {
-    const {title, resalePrice} = book;
+    const {title, resalePrice, picture} = book;
 
     const { user } = useContext(UserContext);
     
@@ -16,7 +16,9 @@ const BookingModal = ({book, setCloseModal}) => {
       } = useForm();
 
       const bookNow = (order) =>{
-
+        order.img = picture;
+        
+       
 
             fetch('http://localhost:5000/orders', {
                 method:'post',
@@ -31,7 +33,7 @@ const BookingModal = ({book, setCloseModal}) => {
                     toast.success('Order Confirmed');
                     setCloseModal(true);
                 }
-                console.log(data)
+                
             })
 
       }
@@ -161,10 +163,10 @@ const BookingModal = ({book, setCloseModal}) => {
               )}
             </div>
           <div className="modal-action">
-              <button onClick={ () => setCloseModal(true)} className='btn rounded-none text-gray-600 hover:bg-gray-800 hover:text-white w-40'>Cancel</button>
+              <button onClick={ () => setCloseModal(true)} className='btn rounded-none text-gray-300 hover:bg-gray-800 hover:text-white w-40'>Cancel</button>
             <label
               htmlFor="buyBook">
-              <button className="btn rounded-none text-gray-600 hover:bg-gray-800 hover:text-white w-40" type='submit'>Submit</button>
+              <button className="btn rounded-none text-gray-300 hover:bg-gray-800 hover:text-white w-40" type='submit'>Submit</button>
             </label>
           </div>
           </form>
