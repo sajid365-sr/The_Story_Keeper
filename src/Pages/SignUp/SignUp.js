@@ -54,6 +54,8 @@ const SignUp = () => {
       .catch((e) => setError(e.message));
   };
 
+
+  // Save user to db
   const saveUser = (name, email) => {
     const newUser = {
       name,

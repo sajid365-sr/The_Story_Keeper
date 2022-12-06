@@ -1,10 +1,16 @@
 import { Rating } from "flowbite-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { HiArrowNarrowDown } from "react-icons/hi";
+import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
 
 const AddAProduct = () => {
   const [category, setCategory] = useState(false);
+    const {user} = useContext(UserContext);
+
+    const ImageHostKey = process.env.REACT_APP_imgUploadKey;
+    
 
   const handleCategory = (event) => {
     const value = event.target.value;
@@ -13,12 +19,66 @@ const AddAProduct = () => {
     }
   };
 
+  const handleEmail =(event) =>{
+      event.target.value = user?.email;
+      
+  }
+
+  const handleName = (event) =>{
+    event.target.value = user?.displayName? user.displayName : '';
+  }
+
   const { register,handleSubmit } = useForm();
 
-  const handleFormSubmit = (data) =>{
-      const img = data.picture[0];
+  const handleFormSubmit = (book) =>{
+    // const { author,
+    //     category,
+    //     description,
+    //     email,
+    //     location,
+    //     originalPrice,
+    //     phone,
+    //     publishYear,
+    //     resalePrice,
+    //     sellerName,
+    //     title,
+    //     ratings,
+    //     reviews
+    // } = data;
+
+      const img = book.picture[0];
     const formData = new FormData();
     formData.append('image', img);
+
+
+    fetch(`https://api.imgbb.com/1/upload?key=${ImageHostKey}`,{
+        method:'POST',
+        body:formData,
+    })
+    .then(res => res.json())
+    .then((imgData) =>{
+        if(imgData.success){
+            book.sellerVerified = false;
+            book.picture = imgData.data.url;
+            
+            fetch('http://localhost:5000/books',{
+                method:'post',
+                headers:{
+                    'content-type':'application/json',
+                },
+                body:JSON.stringify({book})
+            })
+            .then(res => res.json())
+            .then(data =>{
+                if(data.acknowledged){
+                    toast.success('Items added successfully')
+                }
+                console.log(data)
+            })
+
+           
+        }
+    })
   }
 
   return (
@@ -51,7 +111,7 @@ const AddAProduct = () => {
             <span className="text-lg mb-2 text-gray-300">Photo</span>(<span className="text-red-500 text-xl">*</span>)
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointe  hover:bg-gray-400"
+              className="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointe  hover:bg-zinc-700"
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg
@@ -64,7 +124,7 @@ const AddAProduct = () => {
                 >
                   <path
                     strokeLinecap="round"
-                    stroke-linejoin="round"
+                    strokeLinejoin="round"
                     strokeWidth="2"
                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                   ></path>
@@ -148,12 +208,12 @@ const AddAProduct = () => {
             ) : (
               <select
                 onChange={handleCategory}
-                class="block py-2.5 px-0 w-full text-sm text-gray-200 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
+                className="block py-2.5 px-0 w-full text-sm text-gray-200 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 {...register("category", { required: "Category is required" })}
               >
-                <option selected>
-                  Choose Category
-                  (<span>*</span>)
+                <option defaultValue='Choose Category'>
+                  Choose Category '*'
+                  
                 </option>
                 <option className="text-gray-600" value="Science Fiction">
                   Science Fiction
@@ -238,11 +298,13 @@ const AddAProduct = () => {
           </div>
         </div>
 
-{/*==================================== Seller Name and Location ========================================== */}
+{/*================================== Seller Name and Location================================= */}
 
         <div className="grid md:grid-cols-2 md:gap-6 mb-6">
           <div className="relative z-0 mb-6 w-full group">
             <input
+            onClick={ user && handleName}
+            
               type="text"
               className="block pt-3 px-5 w-full text-base text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#155c72] focus:border-b-4 peer"
               {...register("sellerName", {required:'Provide seller name'})}
@@ -281,11 +343,13 @@ const AddAProduct = () => {
           </div>
           <div className="relative z-0 mb-6 w-full group">
             <input
+            onClick={ user && handleEmail}
+            readOnly
               type="email"
               className="block pt-3 px-5 w-full text-base text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#155c72] focus:border-b-4 peer"
               {...register("email", {required:'Email is required'})}
             />
-            <label className="peer-focus:font-medium absolute text-base text-gray-200  duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-2 peer-focus:text-orange-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
+            <label  className="peer-focus:font-medium absolute text-base text-gray-200  duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-2 peer-focus:text-orange-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8">
               Email
               (<span className="text-red-500 text-xl">*</span>)
             </label>
