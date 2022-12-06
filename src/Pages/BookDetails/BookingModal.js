@@ -148,8 +148,7 @@ const BookingModal = ({book, setCloseModal}) => {
               <label className="label">
                 {" "}
                 <span className="label-text text-lg text-gray-700">
-                  Meeting Location (
-                  <span className="text-red-600 text-xl">*</span>)
+                  Meeting Location (<span className="text-red-600 text-xl">*</span>)
                 </span>{" "}
               </label>
               <input

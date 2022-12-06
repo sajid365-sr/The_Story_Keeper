@@ -1,4 +1,4 @@
-import { Navbar } from "flowbite-react";
+
 import React, { useContext } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { UserContext } from "../../Contexts/AuthContext/AuthContext";
@@ -33,12 +33,21 @@ const DashboardLayout = () => {
               </Link>
             )}
             {userType === "seller" && (
+              <>
+              
+              <Link
+                className="font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#291334] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600"
+                to="/dashboard/addAProduct"
+              >
+                Add A Product
+              </Link>
               <Link
                 className="font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#291334] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600"
                 to="/dashboard/myProducts"
               >
                 My Products
               </Link>
+              </>
             )}
             {userType === "admin" && (
               <>

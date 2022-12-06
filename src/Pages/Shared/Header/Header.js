@@ -191,12 +191,12 @@ const Header = () => {
           ) : (
             <div className="gap-3 hidden lg:flex">
               <Link to="/login">
-                <button className="btn px-5 text-base text-gray-800 btn-sm rounded-sm hover:text-white">
+                <button className="btn px-5 text-base text-gray-300 bg-gray-900 btn-sm rounded-sm hover:text-white">
                   Login
                 </button>
               </Link>
               <Link to="/signup">
-                <button className="btn px-5 text-base text-gray-800 btn-sm rounded-sm hover:text-white">
+                <button className="btn px-5 text-base text-gray-300 bg-gray-900 btn-sm rounded-sm hover:text-white">
                   SignUp
                 </button>
               </Link>

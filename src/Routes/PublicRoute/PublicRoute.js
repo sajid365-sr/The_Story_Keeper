@@ -5,6 +5,7 @@ import AdvertiseItems from "../../Pages/AdvertiseItems/AdvertiseItems";
 import Blog from "../../Pages/Blog/Blog";
 import BookDetails from "../../Pages/BookDetails/BookDetails";
 import Categories from "../../Pages/Categories/Categories";
+import AddAProduct from "../../Pages/Dashboard/AddAProduct/AddAProduct";
 import AllBuyer from "../../Pages/Dashboard/AllBuyer/AllBuyer";
 import AllSeller from "../../Pages/Dashboard/AllSeller/AllSeller";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
@@ -101,6 +102,12 @@ export const router = createBrowserRouter([
                 element:<BuyerRoute>
                     <MyOrders></MyOrders>
                 </BuyerRoute>
+            },
+            {
+                path:'/dashboard/addAProduct',
+                element:<SellerRoute>
+                    <AddAProduct></AddAProduct>
+                </SellerRoute>
             },
             {
                 path:'/dashboard/myProducts',
