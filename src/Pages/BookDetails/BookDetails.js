@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import {
   HiArrowNarrowRight,
   HiOutlinePhone,
@@ -8,9 +8,15 @@ import {
 } from "react-icons/hi";
 import { FaCheckCircle } from "react-icons/fa";
 import BookingModal from "./BookingModal";
+import UseVerifyUser from "../../Hooks/UseVerifyUser";
+import { UserContext } from "../../Contexts/AuthContext/AuthContext";
 
 const BookDetails = () => {
     const [closeModal, setCloseModal] = useState(false);
+    const [buyStatus,setBuyStatus] = useState(false);
+    const {user} = useContext(UserContext);
+    const userType = UseVerifyUser(user?.email);
+    const navigate = useNavigate();
     
   const book = useLoaderData();
   const {
@@ -28,6 +34,20 @@ const BookDetails = () => {
     sellerVerified,
     title,
   } = book;
+
+
+  const verifyBuyer = () =>{
+    
+    if(userType[0] === 'seller'){
+      setCloseModal(true);
+      const confirmAction = window.confirm('Your account is a seller account. You can not purchase. Want to add a product?');
+      if(confirmAction){
+        navigate('/dashboard/addAProduct');
+      }
+    }else{
+      setCloseModal(false);
+    }
+  }
 
   return (
     <section className="bg-zinc-300 mb-36 mt-20">
@@ -101,14 +121,19 @@ const BookDetails = () => {
           </div>
         </div>
         <div>
-          <label
-          onClick={() => setCloseModal(false)}
-            htmlFor="buyBook"
-            className="btn rounded-none text-gray-300 hover:bg-gray-800 hover:text-white"
-          >
-            {" "}
-            <HiShoppingCart className="mr-3 text-xl" /> Buy Now
-          </label>
+         {
+           buyStatus? 
+          <Link to='/dashboard/myOrders' className="text-xl link link-primary">View Orders</Link>
+           :
+           <label
+           onClick={verifyBuyer}
+             htmlFor="buyBook"
+             className="btn rounded-none text-gray-300 hover:bg-gray-800 hover:text-white"
+           >
+             {" "}
+             <HiShoppingCart  className="mr-3 text-xl" /> Buy Now
+           </label>
+         }
         </div>
       </div>
 
@@ -121,6 +146,7 @@ const BookDetails = () => {
           book={book}
          closeModal={closeModal}
          setCloseModal={setCloseModal}
+         setBuyStatus={setBuyStatus}
          ></BookingModal>
      }
     </section>

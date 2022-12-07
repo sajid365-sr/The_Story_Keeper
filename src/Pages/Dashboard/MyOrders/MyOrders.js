@@ -17,12 +17,15 @@ const MyOrders = () => {
           `http://localhost:5000/myOrders?email=${user?.email}`
         );
         const data = await res.json();
+        
         return data;
       } catch (err) {
         console.error(err);
       }
     },
   });
+  refetch();
+
 
   return (
     <div className="overflow-x-auto">
@@ -47,13 +50,13 @@ const MyOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.length > 1 &&
+            {
               orders.map((order, i) => (
                 <tr key={order._id} className="h-10 hover text-gray-600">
                   <th>{i + 1}</th>
                   <th className="p-2">
                     <div className="avatar">
-                      <div className="w-16">
+                      <div className="w-20">
                         <img src={order.img} alt="order" />
                       </div>
                     </div>

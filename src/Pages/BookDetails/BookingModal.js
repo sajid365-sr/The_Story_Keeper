@@ -4,8 +4,8 @@ import { UserContext } from "../../Contexts/AuthContext/AuthContext";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 
-const BookingModal = ({book, setCloseModal}) => {
-    const {title, resalePrice, picture} = book;
+const BookingModal = ({book, setCloseModal, setBuyStatus}) => {
+    const {title, resalePrice, picture, _id} = book;
 
     const { user } = useContext(UserContext);
     
@@ -17,7 +17,8 @@ const BookingModal = ({book, setCloseModal}) => {
 
       const bookNow = (order) =>{
         order.img = picture;
-        
+        order.status = 'pending';
+        order.productId = _id
        
 
             fetch('http://localhost:5000/orders', {
@@ -32,6 +33,7 @@ const BookingModal = ({book, setCloseModal}) => {
                 if(data.acknowledged){
                     toast.success('Order Confirmed');
                     setCloseModal(true);
+                    setBuyStatus(true);
                 }
                 
             })
