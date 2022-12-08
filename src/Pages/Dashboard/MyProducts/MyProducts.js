@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
 import axios from "axios";
@@ -7,6 +7,9 @@ import toast from "react-hot-toast";
 
 const MyProducts = () => {
   const { user } = useContext(UserContext);
+  const [statusText, setStatusText] = useState('');
+const [advertised, setAdvertised] = useState(false);
+
 
   // Get all added products
   const {
@@ -29,19 +32,7 @@ const MyProducts = () => {
     },
   });
 
-  const id = products.map((product) => product._id);
-
-  //   useEffect( () =>{
-  //     axios({
-  //         method:'post',
-  //         url:'http://localhost:5000/myProducts/status',
-  //         data:id
-  //     })
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-
-  //   },[id])
+  console.log(products)
 
   const handleDelete = (id) => {
     axios
@@ -54,6 +45,22 @@ const MyProducts = () => {
       })
       .catch((err) => console.error(err));
   };
+
+
+  const handleAdvertise = (product) =>{
+    axios.post('http://localhost:5000/advertise',{
+        product
+    })
+    .then((res) => {
+        if (res.statusText === "OK") {
+          toast.success("Items have been advertised");
+          refetch();
+          setAdvertised(true);
+        }
+      })
+
+    
+  }
 
   return (
     <div className="overflow-x-auto">
@@ -93,10 +100,15 @@ const MyProducts = () => {
                   <th>{product.title}</th>
                   <th className="text-xl">{product.resalePrice} (&#2547;)</th>
                   <th>
-                    <p className="text-green-600 text-lg">Available</p>
-                    <button className="btn btn-sm btn-primary">
-                      Advertise
+                    <p className={`text-lg ${product.status === 'available'? 'text-green-600' : 'text-amber-600'}`}>{product.status}</p>
+                    {
+                        product.status === 'available' &&
+                        <button onClick={() => handleAdvertise(product)} className={`btn btn-sm ${product.advertise?'btn-success':'btn-primary'}`}>
+                    {
+                        product.advertise?'Advertised':'Advertise'
+                    }
                     </button>
+                    }
                   </th>
                   <th>
                     <button

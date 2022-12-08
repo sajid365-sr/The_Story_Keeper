@@ -8,7 +8,7 @@ const BookingModal = ({book, setCloseModal, setBuyStatus}) => {
     const {title, resalePrice, picture, _id} = book;
 
     const { user } = useContext(UserContext);
-    
+    console.log(book)
     const {
         register,
         handleSubmit,

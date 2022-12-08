@@ -5,6 +5,7 @@ import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { HiArrowNarrowDown } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
 
 
@@ -13,7 +14,7 @@ const AddAProduct = () => {
   const { user } = useContext(UserContext);
   const { register, handleSubmit } = useForm();
   const ImageHostKey = process.env.REACT_APP_imgUploadKey;
-   
+   const navigate = useNavigate();
     // const { data :categoryName  = [], refetch} = useQuery({
     //     queryKey:['categoryName'],
     //     queryFn: async() =>{
@@ -79,8 +80,9 @@ const AddAProduct = () => {
                 if(data.acknowledged){
                     toast.success('Items added successfully');
                     event.target.reset();
+                    navigate('/dashboard/myProducts');
                 }
-                console.log(data)
+                
             })
 
         }
