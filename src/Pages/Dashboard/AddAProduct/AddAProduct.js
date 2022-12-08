@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import { useQuery } from "@tanstack/react-query";
 import { Rating } from "flowbite-react";
 import React, { useContext, useState } from "react";
@@ -8,30 +7,33 @@ import { HiArrowNarrowDown } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
 
-
 const AddAProduct = () => {
   const [category, setCategory] = useState(false);
   const { user } = useContext(UserContext);
   const { register, handleSubmit } = useForm();
   const ImageHostKey = process.env.REACT_APP_imgUploadKey;
-   const navigate = useNavigate();
-    // const { data :categoryName  = [], refetch} = useQuery({
-    //     queryKey:['categoryName'],
-    //     queryFn: async() =>{
-    //         const res = await fetch('http://localhost:5000/getName');
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // })
-    // console.log(categoryName)
+  const navigate = useNavigate();
+
+  const { data: categoryName = [], refetch } = useQuery({
+    queryKey: ["categoryName"],
+    queryFn: async () => {
+      const res = await fetch("http://localhost:5000/categories");
+      const data = await res.json();
+      refetch()
+      return data;
+    },
+  });
 
   const handleCategory = (event) => {
-    const value = event.target.value;
+    let value = event.target.value;
+
     if (value === "Others") {
       setCategory(true);
+      
     }
-    
   };
+
+  console.log(category);
 
   const handleEmail = (event) => {
     event.target.value = user?.email;
@@ -41,52 +43,39 @@ const AddAProduct = () => {
     event.target.value = user?.displayName ? user.displayName : "";
   };
 
-  const options = [
-      { value: "Science Fiction"},{ value: "History and Tradition"},{ value: "Fiction"},{ value: "Islamic"},{ value: "Admission"},{ value: "Travel"},{ value: "Philosophy and Philosopher"},{ value: "Biographies, Memories & Interviews"},{ value: "Politics"},{ value: "Story"},{ value: "Business, Investing & Economics"},{ value: "Books of Drama"},{ value: "Others"}
-  ];
-
-
 
   const handleFormSubmit = (book, event) => {
-    
-
     const img = book.picture[0];
     const formData = new FormData();
     formData.append("image", img);
-    
-    
 
-    fetch(`https://api.imgbb.com/1/upload?key=${ImageHostKey}`,{
-        method:'POST',
-        body:formData,
+    fetch(`https://api.imgbb.com/1/upload?key=${ImageHostKey}`, {
+      method: "POST",
+      body: formData,
     })
-    .then(res => res.json())
-    .then((imgData) =>{
-        if(imgData.success){
-            book.sellerVerified = false;
-            book.picture = imgData.data.url;
-            
+      .then((res) => res.json())
+      .then((imgData) => {
+        if (imgData.success) {
+          book.picture = imgData.data.url;
+          book.status = "available";
 
-            
-            fetch('http://localhost:5000/books',{
-                method:'post',
-                headers:{
-                    'content-type':'application/json',
-                },
-                body:JSON.stringify({book})
-            })
-            .then(res => res.json())
-            .then(data =>{
-                if(data.acknowledged){
-                    toast.success('Items added successfully');
-                    event.target.reset();
-                    navigate('/dashboard/myProducts');
-                }
-                
-            })
-
+          fetch("http://localhost:5000/books", {
+            method: "post",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({ book }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.acknowledged) {
+                toast.success("Items added successfully");
+                event.target.reset();
+                navigate("/dashboard/myProducts");
+              }
+            });
         }
-    })
+      });
   };
 
   return (
@@ -196,6 +185,7 @@ const AddAProduct = () => {
                   <div className="w-full">
                     <input
                       type="text"
+                      
                       className="block pt-3 px-5 w-full text-base text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#155c72] focus:border-b-4 peer"
                       {...register("category", {
                         required: "Category is required",
@@ -222,14 +212,21 @@ const AddAProduct = () => {
                 className="block py-2.5 px-0 w-full text-sm text-gray-200 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 {...register("category", { required: "Category is required" })}
               >
-                  <option className="text-gray-600">Choose a category</option>
-                  {
-                      options.map((option,i) => <option key={i}
-                         className="text-gray-600" value={option.value === 'Others' ? 'Others':`${option.value}`}>{option.value}</option>
-                         
-                         )
-                  }
+                <option className="text-gray-600">Choose a category</option>
+                {categoryName.map((category, i) => (
+                  <option key={i} className="text-gray-600" value={category}>
+                    {category}
+                  </option>
+                ))}
+                <option
+                  
+                  className="text-gray-600"
+                  value="Others"
+                >
+                  Others
+                </option>
               </select>
+
               
             )}
           </div>

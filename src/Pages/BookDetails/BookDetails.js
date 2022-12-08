@@ -31,10 +31,11 @@ const BookDetails = () => {
     publishYear,
     resalePrice,
     sellerName,
-    sellerVerified,
+    verified,
     title,
   } = book;
 
+  console.log(book)
 
   const verifyBuyer = () =>{
     
@@ -105,7 +106,7 @@ const BookDetails = () => {
             <div className="text-gray-600 flex gap-1">
               <span className="text-lg font-medium">Seller Name:</span>{" "}
               <p className="flex items-center gap-2">
-                {sellerVerified && <FaCheckCircle className="text-blue-600" />}
+                {verified && <FaCheckCircle className="text-blue-600" />}
                 <span>{sellerName}</span>{" "}
               </p>
             </div>

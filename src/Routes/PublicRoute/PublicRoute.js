@@ -17,6 +17,7 @@ import Login from "../../Pages/Login/Login";
 import Shop from "../../Pages/Shop/Shop";
 import SignUp from "../../Pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import AdvertiseItemRote from "../AdvertiseItemRote/AdvertiseItemRote";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
@@ -41,7 +42,9 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/advertise',
-                element:<AdvertiseItems></AdvertiseItems>
+                element:<AdvertiseItemRote>
+                    <AdvertiseItems></AdvertiseItems>
+                </AdvertiseItemRote>
             },
             {
                 path:'/blog',

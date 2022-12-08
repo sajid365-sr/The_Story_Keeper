@@ -57,11 +57,24 @@ const SignUp = () => {
 
   // Save user to db
   const saveUser = (name, email) => {
+
+    // check ?
+    // const newUser = {
+    //   name,
+    //   email,
+    //   type:"seller",
+    //   verified:false
+    // }
+    
     const newUser = {
       name,
       email,
       type: `${check ? "seller" : "buyer"}`,
     };
+
+    if(check){
+      newUser.verified = false
+    } 
 
     fetch("http://localhost:5000/users", {
       method: "post",

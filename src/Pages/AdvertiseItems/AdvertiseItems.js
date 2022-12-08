@@ -2,12 +2,12 @@ import { Rating } from "flowbite-react";
 import React from "react";
 import { Link } from "react-router-dom";
 import UseGetAdvertiseItem from "../../Hooks/UseGetAdvertiseItem";
-import { HiArrowNarrowRight } from "react-icons/hi";
 import { FaCommentAlt } from "react-icons/fa";
 
 const AdvertiseItems = () => {
   const [items, refetch] = UseGetAdvertiseItem();
 
+  refetch();
   return (
     <section className="max-w-screen-xl mx-auto mt-20 mb-36">
       <h2 className="text-3xl text-gray-700 text-center underline font-medium">

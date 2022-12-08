@@ -24,15 +24,17 @@ const MyProducts = () => {
           `http://localhost:5000/myProducts?email=${user?.email}`
         );
         const data = await res.json();
-
+        refetch();
         return data;
+       
       } catch (err) {
         console.error(err);
       }
     },
+    
   });
 
-  console.log(products)
+  
 
   const handleDelete = (id) => {
     axios
@@ -62,6 +64,7 @@ const MyProducts = () => {
     
   }
 
+  refetch()
   return (
     <div className="overflow-x-auto">
       {products.length < 1 ? (

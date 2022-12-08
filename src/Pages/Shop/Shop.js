@@ -8,7 +8,7 @@ import { FaCommentAlt } from "react-icons/fa";
 
 const Shop = () => {
     const books = useLoaderData();
-
+    
     return (
         <section className="max-w-screen-xl py-10 mb-52 mx-auto">
       
