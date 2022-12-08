@@ -17,7 +17,7 @@ const MyOrders = () => {
           `http://localhost:5000/myOrders?email=${user?.email}`
         );
         const data = await res.json();
-        
+
         return data;
       } catch (err) {
         console.error(err);
@@ -25,7 +25,7 @@ const MyOrders = () => {
     },
   });
   refetch();
-
+  console.log(orders);
 
   return (
     <div className="overflow-x-auto">
@@ -44,35 +44,35 @@ const MyOrders = () => {
             <tr>
               <th className="text-lg text-gray-700"></th>
               <th className="text-lg text-gray-700">Picture</th>
-              <th className="text-lg text-gray-700">Book Title</th>
+              <th className="text-lg text-gray-700">Details</th>
               <th className="text-lg text-gray-700">Price</th>
               <th className="text-lg text-gray-700">Status</th>
             </tr>
           </thead>
           <tbody>
-            {
-              orders.map((order, i) => (
-                <tr key={order._id} className="h-10 hover text-gray-600">
-                  <th>{i + 1}</th>
-                  <th className="p-2">
-                    <div className="avatar">
-                      <div className="w-20">
-                        <img src={order.img} alt="order" />
-                      </div>
-                    </div>
-                  </th>
-                  <th>{order.book}</th>
-                  <th className="text-xl">{order.price} (&#2547;)</th>
-                  <th>
-                    <label
-                      htmlFor="confirmation-modal"
-                      className="btn rounded-none px-5 btn-sm"
-                    >
-                      Pay
-                    </label>
-                  </th>
-                </tr>
-              ))}
+            {orders.map((order, i) => (
+              <tr key={order._id} className=" hover text-gray-600">
+                <th>{i + 1}</th>
+                <th className="p-2">
+                  <div className="avatar w-1/4">
+                    <img src={order.img} alt="order" />
+                  </div>
+                </th>
+                <th>
+                  <p>{order.book}</p>
+                  <p>{order.author}</p>
+                </th>
+                <th className="text-xl">{order.price} (&#2547;)</th>
+                <th>
+                  <label
+                    htmlFor="confirmation-modal"
+                    className="btn rounded-none px-5 btn-sm"
+                  >
+                    Pay
+                  </label>
+                </th>
+              </tr>
+            ))}
           </tbody>
         </table>
       )}

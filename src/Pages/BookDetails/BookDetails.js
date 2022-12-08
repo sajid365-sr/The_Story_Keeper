@@ -53,9 +53,9 @@ const BookDetails = () => {
     <section className="bg-zinc-300 mb-36 mt-20">
       <div className="max-w-screen-xl py-24 mx-auto flex lg:flex-row flex-col gap-20">
         {/* Image */}
-        <div className="bg-white p-14 lg:w-1/2 w-11/12 mx-auto">
+        <div className="bg-white h-[600px] p-14 lg:w-1/2 w-11/12 mx-auto">
           <img
-            className="mx-auto w-2/3 hover:-rotate-6 transition-all duration-500"
+            className="mx-auto lg:w-2/3 w-10/12 hover:-rotate-6 transition-all duration-500"
             src={picture}
             alt=""
           />
@@ -92,7 +92,7 @@ const BookDetails = () => {
         </div>
       </div>
       {/* Seller Info */}
-      <div className="max-w-screen-xl px-20 lg:px-0 flex items-center gap-32 pb-16 mx-auto">
+      <div className="max-w-screen-xl lg:px-20 px-0 flex lg:flex-row flex-col items-center lg:gap-32 gap-10 pb-16 mx-auto">
         <div>
           <p className="text-3xl flex gap-3 mb-3 items-center text-gray-600">
             Seller Info{" "}

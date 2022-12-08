@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
 import axios from "axios";
@@ -7,8 +7,8 @@ import toast from "react-hot-toast";
 
 const MyProducts = () => {
   const { user } = useContext(UserContext);
-  const [statusText, setStatusText] = useState('');
-const [advertised, setAdvertised] = useState(false);
+  
+
 
 
   // Get all added products
@@ -55,7 +55,7 @@ const [advertised, setAdvertised] = useState(false);
         if (res.statusText === "OK") {
           toast.success("Items have been advertised");
           refetch();
-          setAdvertised(true);
+          
         }
       })
 
@@ -111,12 +111,15 @@ const [advertised, setAdvertised] = useState(false);
                     }
                   </th>
                   <th>
-                    <button
+                    {
+                        product.status === 'available' &&
+                        <button
                       onClick={() => handleDelete(product._id)}
                       className="btn btn-sm"
                     >
                       Delete
                     </button>
+                    }
                   </th>
                 </tr>
               ))}

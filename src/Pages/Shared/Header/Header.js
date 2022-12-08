@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import logo from "../../../Assets/logo.png";
 import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
 import { FaUserAlt } from "react-icons/fa";
+import UseGetAdvertiseItem from "../../../Hooks/UseGetAdvertiseItem";
+
 
 const Header = () => {
   const { user, logOUt } = useContext(UserContext);
   const [viewProfile, setViewProfile] = useState(false);
   const [viewNav, setViewNav] = useState(false);
+  const [items, refetch] = UseGetAdvertiseItem();
 
+  refetch();
   const navStyle =
     "lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-[#291334] lg:mb-0 mb-5 font-medium border-gray-800";
 
@@ -34,7 +38,9 @@ const Header = () => {
       >
         Shop
       </Link>
-      <Link
+      {
+        items.length >= 1 &&
+        <Link
         className={`${navStyle} ${
           viewNav
             ? "translate-x-0 transition-transform duration-1000"
@@ -44,6 +50,7 @@ const Header = () => {
       >
         Advertise Items
       </Link>
+      }
       <Link
         className={`${navStyle} ${
           viewNav

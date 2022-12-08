@@ -5,10 +5,10 @@ import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 
 const BookingModal = ({book, setCloseModal, setBuyStatus}) => {
-    const {title, resalePrice, picture, _id} = book;
+    const {title, resalePrice, picture, _id, author} = book;
 
     const { user } = useContext(UserContext);
-    console.log(book)
+    
     const {
         register,
         handleSubmit,
@@ -18,7 +18,8 @@ const BookingModal = ({book, setCloseModal, setBuyStatus}) => {
       const bookNow = (order) =>{
         order.img = picture;
         order.status = 'pending';
-        order.productId = _id
+        order.productId = _id;
+        order.author = author;
        
 
             fetch('http://localhost:5000/orders', {
