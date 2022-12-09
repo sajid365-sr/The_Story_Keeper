@@ -1,4 +1,4 @@
-import React, { useContext, useId, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaFacebook, FaGoogle } from "react-icons/fa";
@@ -58,13 +58,6 @@ const SignUp = () => {
   // Save user to db
   const saveUser = (name, email) => {
 
-    // check ?
-    // const newUser = {
-    //   name,
-    //   email,
-    //   type:"seller",
-    //   verified:false
-    // }
     
     const newUser = {
       name,

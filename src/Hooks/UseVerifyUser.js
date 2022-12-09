@@ -7,7 +7,11 @@ const UseVerifyUser = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/users/type?email=${email}`)
+      fetch(`http://localhost:5000/users/type?email=${email}`,{
+        headers:{
+          authorization: `Bearer ${localStorage.getItem('AccessToken')}`
+        }
+      })
         .then((res) => res.json())
         .then((data) => {
         

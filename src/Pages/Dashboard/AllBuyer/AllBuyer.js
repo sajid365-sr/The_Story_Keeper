@@ -6,7 +6,11 @@ const AllBuyer = () => {
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allBuyer");
+      const res = await fetch("http://localhost:5000/allBuyer",{
+        headers:{
+          authorization : `Bearer ${localStorage.getItem('AccessToken')}`
+        }
+      });
       const data = await res.json();
       refetch();
       return data;
@@ -16,7 +20,11 @@ const AllBuyer = () => {
 
   // Delete buyer
   const handleDeleteBuyer = (email) =>{
-    const confirm = window.confirm(`Are you sure want to delete ${email}?`);
+    const confirm = window.confirm(`Are you sure want to delete ${email}?`,{
+      headers:{
+        authorization : `Bearer ${localStorage.getItem('AccessToken')}`
+      }
+    });
     if(confirm){
       fetch(`http://localhost:5000/delete/buyer?email=${email}`)
       .then(res => res.json())

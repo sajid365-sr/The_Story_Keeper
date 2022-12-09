@@ -1,13 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
+import toast from "react-hot-toast";
 import { FaCheckCircle } from "react-icons/fa";
 
 const AllSeller = () => {
   const { data: sellers = [], refetch } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allSeller");
+      const res = await fetch("http://localhost:5000/allSeller",{
+        headers:{
+          authorization : `Bearer ${localStorage.getItem('AccessToken')}`
+        }
+      });
       const data = await res.json();
       return data;
     },
@@ -16,12 +21,33 @@ const AllSeller = () => {
 
   // Verify seller 
   const handleVerification = (email) =>{
-    axios.get(`http://localhost:5000/seller/verify?email=${email}`);
+    axios.get(`http://localhost:5000/seller/verify?email=${email}`,{
+      headers:{
+        authorization : `Bearer ${localStorage.getItem('AccessToken')}`
+      }
+    });
 
     refetch();
   }
 
-  console.log(sellers)
+    // Delete seller
+    const handleDeleteSeller = (email) =>{
+      const confirm = window.confirm(`Are you sure want to delete ${email}?`);
+      if(confirm){
+        fetch(`http://localhost:5000/delete/seller?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+          
+          if(data.acknowledged){
+            toast.success('Seller deleted successfully');
+            refetch();
+          }
+        })
+      }
+    }
+
+
+
   return (
     <div>
       <h1 className="text-4xl text-center my-10 underline text-gray-600 font-semibold">
@@ -68,7 +94,7 @@ const AllSeller = () => {
                           !seller.verified &&
                           <button onClick={() => handleVerification(seller.email)} className="btn btn-sm mr-3 rounded-none btn-outline">Verify</button>
                       }
-                      <button className="btn btn-sm rounded-none btn-outline">Delete</button>
+                      <button onClick={ () => handleDeleteSeller(seller.email) } className="btn btn-sm rounded-none btn-outline">Delete</button>
                   </th>
                 </tr>
               ))}

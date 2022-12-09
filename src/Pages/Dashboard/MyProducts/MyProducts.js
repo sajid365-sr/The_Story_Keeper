@@ -21,8 +21,11 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/myProducts?email=${user?.email}`
-        );
+          `http://localhost:5000/myProducts?email=${user?.email}`, {
+            headers:{
+              authorization : `Bearer ${localStorage.getItem('AccessToken')}`
+            }
+          });
         const data = await res.json();
         refetch();
         return data;
@@ -38,7 +41,11 @@ const MyProducts = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/myProduct/delete/${id}`)
+      .delete(`http://localhost:5000/myProduct/delete/${id}`,{
+        headers:{
+          authorization : `Bearer ${localStorage.getItem('AccessToken')}`
+        }
+      })
       .then((res) => {
         if (res.statusText === "OK") {
           toast.success("Item deleted successfully");
@@ -52,6 +59,7 @@ const MyProducts = () => {
   const handleAdvertise = (product) =>{
     axios.post('http://localhost:5000/advertise',{
         product
+        
     })
     .then((res) => {
         if (res.statusText === "OK") {
