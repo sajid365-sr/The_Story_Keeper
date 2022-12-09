@@ -12,7 +12,7 @@ const AllBuyer = () => {
         }
       });
       const data = await res.json();
-      refetch();
+     
       return data;
     },
   });
@@ -38,6 +38,7 @@ const AllBuyer = () => {
     }
   }
 
+  refetch()
   return (
     <div>
       <h1 className="text-4xl text-center my-10 underline text-gray-600 font-semibold">

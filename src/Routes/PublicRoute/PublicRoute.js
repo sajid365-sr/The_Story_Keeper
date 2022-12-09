@@ -14,6 +14,7 @@ import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
 import Home from "../../Pages/Home/Home";
 
 import Login from "../../Pages/Login/Login";
+import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
 import Shop from "../../Pages/Shop/Shop";
 import SignUp from "../../Pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
@@ -71,7 +72,8 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <BookDetails></BookDetails>
                 </PrivateRoute>
-            },
+            }
+            
             
         ]
         
@@ -119,6 +121,10 @@ export const router = createBrowserRouter([
                 </SellerRoute>
             },
         ]
+    },
+    {
+        path:'*',
+        element:<ErrorPage></ErrorPage>
     }
 
 ])
