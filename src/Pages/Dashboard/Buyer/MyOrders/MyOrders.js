@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
+import { UserContext } from "../../../../Contexts/AuthContext/AuthContext";
 
 const MyOrders = () => {
   const { user } = useContext(UserContext);
@@ -27,10 +27,10 @@ const MyOrders = () => {
     },
   });
   refetch();
-  console.log(orders);
+  
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto mx-10 mt-24">
       {orders.length < 1 ? (
         <div className="my-24 text-center">
           <h1 className="text-4xl text-gray-600 font-semibold">
@@ -61,14 +61,14 @@ const MyOrders = () => {
                   </div>
                 </th>
                 <th>
-                  <p>{order.book}</p>
-                  <p>{order.author}</p>
+                  <p className="text-xl text-gray-800">{order.book}</p>
+                  <p className="text-sm">{order.author}</p>
                 </th>
-                <th className="text-xl">{order.price} (&#2547;)</th>
+                <th className="text-3xl text-[#1da9c5] font-bold">{order.price} (&#2547;)</th>
                 <th>
                   <label
                     htmlFor="confirmation-modal"
-                    className="btn rounded-none px-5 btn-sm"
+                    className="btn btn-sm bg-[#057be8] text-gray-100 border-none  rounded-none px-8 text-lg"
                   >
                     Pay
                   </label>

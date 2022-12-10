@@ -1,8 +1,11 @@
 
 import { useQuery } from '@tanstack/react-query';
+import { useContext } from 'react';
+import { UserContext } from '../Contexts/AuthContext/AuthContext';
 
 
 const UseGetAdvertiseItem = () => {
+    const {logOUt} = useContext(UserContext);
     
 const {data:items = [], refetch} = useQuery({
     queryKey:['items'],
@@ -13,6 +16,9 @@ const {data:items = [], refetch} = useQuery({
               }
         });
         const data = await res.json();
+        if(data.message === 'Forbidden Access'){
+            logOUt();
+          }
         return data;
         
     }

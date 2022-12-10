@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { HiArrowNarrowDown } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
+import { UserContext } from "../../../../Contexts/AuthContext/AuthContext";
 
 const AddAProduct = () => {
   const [category, setCategory] = useState(false);
@@ -33,7 +33,7 @@ const AddAProduct = () => {
     }
   };
 
-  console.log(category);
+  
 
   const handleEmail = (event) => {
     event.target.value = user?.email;

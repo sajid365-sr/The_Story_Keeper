@@ -16,6 +16,7 @@ const GetBooks = () => {
     },
   });
 
+  refetch();
 
   return (
     <section className="max-w-screen-xl py-10 mb-52 mx-auto">

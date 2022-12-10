@@ -5,12 +5,11 @@ import AdvertiseItems from "../../Pages/AdvertiseItems/AdvertiseItems";
 import Blog from "../../Pages/Blog/Blog";
 import BookDetails from "../../Pages/BookDetails/BookDetails";
 import Categories from "../../Pages/Categories/Categories";
-import AddAProduct from "../../Pages/Dashboard/AddAProduct/AddAProduct";
-import AllBuyer from "../../Pages/Dashboard/AllBuyer/AllBuyer";
-import AllSeller from "../../Pages/Dashboard/AllSeller/AllSeller";
-import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
-import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
-import ReportedItems from "../../Pages/Dashboard/ReportedItems/ReportedItems";
+import AddAProduct from "../../Pages/Dashboard/Seller/AddAProduct/AddAProduct";
+import AllBuyer from "../../Pages/Dashboard/Admin/AllBuyer/AllBuyer";
+import AllSeller from "../../Pages/Dashboard/Admin/AllSeller/AllSeller";
+import MyOrders from "../../Pages/Dashboard/Buyer/MyOrders/MyOrders";
+import MyProducts from "../../Pages/Dashboard/Seller/MyProducts/MyProducts";
 import Home from "../../Pages/Home/Home";
 
 import Login from "../../Pages/Login/Login";
@@ -22,6 +21,7 @@ import AdvertiseItemRote from "../AdvertiseItemRote/AdvertiseItemRote";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import WishList from "../../Pages/Dashboard/Buyer/WishList/WishList";
 
 export const router = createBrowserRouter([
     {
@@ -97,15 +97,15 @@ export const router = createBrowserRouter([
                 </AdminRoute>
             },
             {
-                path:'/dashboard/reportedItems',
-                element:<AdminRoute>
-                    <ReportedItems></ReportedItems>
-                </AdminRoute>
-            },
-            {
                 path:'/dashboard/myOrders',
                 element:<BuyerRoute>
                     <MyOrders></MyOrders>
+                </BuyerRoute>
+            },
+            {
+                path:'/dashboard/myWishList',
+                element:<BuyerRoute>
+                    <WishList></WishList>
                 </BuyerRoute>
             },
             {

@@ -6,10 +6,11 @@ import {
   HiOutlineMail,
   HiShoppingCart,
 } from "react-icons/hi";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaRegHeart } from "react-icons/fa";
 import BookingModal from "./BookingModal";
 import UseVerifyUser from "../../Hooks/UseVerifyUser";
 import { UserContext } from "../../Contexts/AuthContext/AuthContext";
+import toast from "react-hot-toast";
 
 const BookDetails = () => {
     const [closeModal, setCloseModal] = useState(false);
@@ -35,7 +36,7 @@ const BookDetails = () => {
     title,
   } = book;
 
-  console.log(book)
+  
 
   const verifyBuyer = () =>{
     
@@ -48,6 +49,34 @@ const BookDetails = () => {
     }else{
       setCloseModal(false);
     }
+  }
+
+  // Add to wishList
+
+  const handleWishList = () =>{
+      const addBook = {
+        title,
+        picture,
+        price:resalePrice,
+        author,
+        listId:book._id,
+        email:user.email
+      }
+    
+    fetch('http://localhost:5000/wishList',{
+      method:'post',
+      headers:{
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(addBook)
+    })
+    .then((res) => res.json())
+    .then(data =>{
+      if(data.acknowledged){
+        toast.success('Items added to wish list')
+      }
+    })
+
   }
 
   return (
@@ -121,7 +150,8 @@ const BookDetails = () => {
             <p className="text-gray-700 font-medium">Location: {location}</p>
           </div>
         </div>
-        <div>
+        <div className="flex items-center gap-10">
+         <div>
          {
            buyStatus? 
           <Link to='/dashboard/myOrders' className="text-xl link link-primary">View Orders</Link>
@@ -135,6 +165,10 @@ const BookDetails = () => {
              <HiShoppingCart  className="mr-3 text-xl" /> Buy Now
            </label>
          }
+         </div>
+         <button onClick={ handleWishList } className="border border-gray-800 p-1">
+         <FaRegHeart title="Make wish list" className="text-4xl" />
+         </button>
         </div>
       </div>
 
