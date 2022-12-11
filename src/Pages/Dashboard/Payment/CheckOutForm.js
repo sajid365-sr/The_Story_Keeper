@@ -55,10 +55,30 @@ const CheckOutForm = ({ items }) => {
   }
 
   if(success){
+
+    // Set payment status pending to success
       fetch(`http://localhost:5000/payment/status/${productId}`)
       .then(res => res.json())
       .then(data => {
           console.log(data)
+      });
+
+      const payment = {
+        price,
+        TnxId: transactionId,
+        email,
+        productId,
+        paymentTime: new Date().toLocaleString()
+      };
+
+      // Store payment info in the database.........
+      fetch("http://localhost:5000/payments", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+        },
+        body: JSON.stringify(payment),
       })
   }
 

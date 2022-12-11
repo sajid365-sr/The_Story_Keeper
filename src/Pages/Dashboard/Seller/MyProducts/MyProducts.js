@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Contexts/AuthContext/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { FaCheckCircle } from "react-icons/fa";
 
 const MyProducts = () => {
   const { user } = useContext(UserContext);
@@ -104,19 +105,23 @@ const MyProducts = () => {
                   <th>{product.title}</th>
                   <th className="text-xl">{product.resalePrice} (&#2547;)</th>
                   <th>
-                    <p
-                      className={`text-lg ${
-                        product.status === "available"
-                          ? "text-green-600"
-                          : "text-amber-600"
-                      }`}
-                    >
-                      {product.status === 'pending'? 'Waiting fo payment' : `${product.status}`}
-                    </p>
+                    {
+                      product.status === 'available' &&
+                      <p className="text-green-600">Available</p>
+                    }
+                    {
+                      product.status === 'pending' &&
+                      <p className="text-amber-600">waiting fo payment..</p>
+                    }
+                    {
+                      product.status === 'sold' &&
+                      <p className="text-blue-600 flex items-center gap-2 text-xl"><FaCheckCircle/> Sold</p>
+                    }
+                    
                     {product.status === "available" && (
                       <button
                         onClick={() => handleAdvertise(product)}
-                        className={`btn btn-sm ${
+                        className={`btn btn-sm rounded-none ${
                           product.advertise ? "btn-success" : "btn-primary"
                         }`}
                       >
@@ -128,7 +133,7 @@ const MyProducts = () => {
                     {product.status === "available" && (
                       <button
                         onClick={() => handleDelete(product._id)}
-                        className="btn btn-sm"
+                        className="btn rounded-none btn-sm"
                       >
                         Delete
                       </button>
@@ -139,30 +144,6 @@ const MyProducts = () => {
           </tbody>
         </table>
       )}
-
-      {/* Delete modal */}
-      {/* <label htmlFor="my-modal" className="btn">
-        open modal
-      </label> */}
-
-      {/* Put this part before </body> tag */}
-      {/* <input type="checkbox" id="my-modal" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">
-            Congratulations random Internet user!
-          </h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
-          <div className="modal-action">
-            <label htmlFor="my-modal" className="btn">
-              Yay!
-            </label>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

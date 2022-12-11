@@ -24,6 +24,7 @@ import SellerRoute from "../SellerRoute/SellerRoute";
 import WishList from "../../Pages/Dashboard/Buyer/WishList/WishList";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
 
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -93,6 +94,14 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        path: "/dashboard",
+        element: (
+          <AdminRoute>
+            <AllSeller></AllSeller>
+          </AdminRoute>
+        ),
+      },
+      {
         path: "/dashboard/allSeller",
         element: (
           <AdminRoute>
@@ -106,6 +115,14 @@ export const router = createBrowserRouter([
           <AdminRoute>
             <AllBuyer></AllBuyer>
           </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <BuyerRoute>
+            <MyOrders></MyOrders>
+          </BuyerRoute>
         ),
       },
       {
@@ -147,6 +164,14 @@ export const router = createBrowserRouter([
         element: (
           <SellerRoute>
             <AddAProduct></AddAProduct>
+          </SellerRoute>
+        ),
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
           </SellerRoute>
         ),
       },
