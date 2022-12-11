@@ -23,12 +23,14 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import WishList from "../../Pages/Dashboard/Buyer/WishList/WishList";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<DisplayError></DisplayError>,
     children: [
       {
         path: "/",
@@ -92,15 +94,8 @@ export const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>,
       </PrivateRoute>
     ),
+    errorElement:<DisplayError></DisplayError>,
     children: [
-      {
-        path: "/dashboard",
-        element: (
-          <AdminRoute>
-            <AllSeller></AllSeller>
-          </AdminRoute>
-        ),
-      },
       {
         path: "/dashboard/allSeller",
         element: (
@@ -115,14 +110,6 @@ export const router = createBrowserRouter([
           <AdminRoute>
             <AllBuyer></AllBuyer>
           </AdminRoute>
-        ),
-      },
-      {
-        path: "/dashboard",
-        element: (
-          <BuyerRoute>
-            <MyOrders></MyOrders>
-          </BuyerRoute>
         ),
       },
       {
@@ -164,14 +151,6 @@ export const router = createBrowserRouter([
         element: (
           <SellerRoute>
             <AddAProduct></AddAProduct>
-          </SellerRoute>
-        ),
-      },
-      {
-        path: "/dashboard",
-        element: (
-          <SellerRoute>
-            <MyProducts></MyProducts>
           </SellerRoute>
         ),
       },

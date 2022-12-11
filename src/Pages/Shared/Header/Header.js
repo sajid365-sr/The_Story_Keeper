@@ -39,6 +39,7 @@ const Header = () => {
       )}
     </>
   );
+  
 
   // Logout user
   const handleLogOut = () => {
@@ -151,16 +152,16 @@ const Header = () => {
                   <p className="cursor-default">{user.email}</p>
                   <p className="cursor-default">{user.displayName}</p>
                 </li>
-                <li role="button" className="text-gray-300">
+                <li className="hover:bg-[#7c3c9c]" >
                   <label
                     onClick={() => setViewModal(true)}
                     htmlFor="UpdatePhoto"
                   >
-                    Upload Photo
+                    <p className="text-gray-300 hover:text-white">Upload Photo</p>
                   </label>
                 </li>
-                <li role="button" onClick={handleLogOut}>
-                  <p className="text-gray-300">Logout</p>
+                <li className="hover:bg-[#7c3c9c]" role="button" onClick={handleLogOut}>
+                  <p className="text-gray-300 hover:text-white">Logout</p>
                 </li>
               </ul>
             </div>
@@ -180,7 +181,7 @@ const Header = () => {
           )}
 
           {/* Dashboard toggle button */}
-          {user && (
+          {user && window.location.href === 'http://localhost:3000/dashboard' && (
             <label
               htmlFor="dashboard-drawer"
               tabIndex={2}

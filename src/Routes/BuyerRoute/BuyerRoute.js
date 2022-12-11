@@ -9,7 +9,7 @@ const BuyerRoute = ({children}) => {
     const {user, loading} = useContext(UserContext);
     const [userType, isUserLoading] = UseVerifyUser(user?.email);
     const location = useLocation();
-
+    
     if(loading || isUserLoading){
         return <Loading></Loading>
     }

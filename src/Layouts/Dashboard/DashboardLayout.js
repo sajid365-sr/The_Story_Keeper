@@ -7,6 +7,7 @@ import Header from "../../Pages/Shared/Header/Header";
 const DashboardLayout = () => {
   const { user } = useContext(UserContext);
   const [userType] = UseVerifyUser(user?.email);
+  const linkStyle = 'font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#621e85] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600'
 
   return (
     <div>
@@ -26,13 +27,13 @@ const DashboardLayout = () => {
             {userType === "buyer" && (
               <>
                 <Link
-                  className="font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#621e85] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600"
+                  className={`${linkStyle}`}
                   to="/dashboard/myOrders"
                 >
                   My Orders
                 </Link>
                 <Link
-                  className="font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#621e85] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600"
+                  className={`${linkStyle}`}
                   to="/dashboard/myWishList"
                 >
                   Wish List
@@ -42,13 +43,13 @@ const DashboardLayout = () => {
             {userType === "seller" && (
               <>
                 <Link
-                  className="font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#621e85] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600"
+                  className={`${linkStyle}`}
                   to="/dashboard/addAProduct"
                 >
                   Add A Product
                 </Link>
                 <Link
-                  className="font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#621e85] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600"
+                  className={`${linkStyle}`}
                   to="/dashboard/myProducts"
                 >
                   My Products
@@ -58,14 +59,14 @@ const DashboardLayout = () => {
             {userType === "admin" && (
               <>
                 <Link
-                  className="font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#621e85] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600"
+                  className={`${linkStyle}`}
                   to="/dashboard/allSeller"
                 >
                   All Seller
                 </Link>
 
                 <Link
-                  className="font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#621e85] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600"
+                  className={`${linkStyle}`}
                   to="/dashboard/allBuyer"
                 >
                   All Buyer
