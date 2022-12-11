@@ -27,7 +27,9 @@ password, stripe payment secret and JWT also. So I've implement environment vari
 
 `9` I've used Tailwind here as a CSS Library and use daisyUi and also a tiny amount of Flowbite as a CSS plugin.
 
-
+## Admin Check
+`adminEmail:` sajidsorker@gmail.com
+`adminPassword:` 123456
 
 
 ## FOLLOW ME ON
