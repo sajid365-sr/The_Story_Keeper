@@ -73,7 +73,9 @@ const AllBuyer = () => {
                     <p className="text-primary">{buyer.email}</p>
                   </th>
                   <th>
-                      
+                     <p>Orders:</p> 
+                     <p>Pending:</p> 
+                     <p>paid:</p> 
                   </th>
                   <th>
                       

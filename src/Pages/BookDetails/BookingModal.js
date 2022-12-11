@@ -16,7 +16,7 @@ const BookingModal = ({book, setCloseModal, setBuyStatus}) => {
       } = useForm();
 
       const bookNow = (order) =>{
-        order.img = picture;
+        order.picture = picture;
         order.status = 'pending';
         order.productId = _id;
         order.author = author;
@@ -99,7 +99,7 @@ const BookingModal = ({book, setCloseModal, setBuyStatus}) => {
               <input
                 value={title}
                 className="cursor-not-allowed input input-bordered border-gray-400 w-full text-gray-800"
-                {...register("book", { required: "book is required" })}
+                {...register("title", { required: "book is required" })}
               />
               {errors.book && (
                 <p className="text-error" role="alert">

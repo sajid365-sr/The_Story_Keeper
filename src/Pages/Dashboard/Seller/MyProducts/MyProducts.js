@@ -111,7 +111,7 @@ const MyProducts = () => {
                           : "text-amber-600"
                       }`}
                     >
-                      {product.status}
+                      {product.status === 'pending'? 'Waiting fo payment' : `${product.status}`}
                     </p>
                     {product.status === "available" && (
                       <button

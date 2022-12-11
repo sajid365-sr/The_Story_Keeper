@@ -55,10 +55,10 @@ const PricePlan = () => {
   ];
 
   return (
-    <section className="mb-40 max-w-screen-xl mx-auto">
-      <div className="w-[450px] mb-16 text-center mx-auto">
+    <section className="mb-40 lg:max-w-screen-xl w-3/4 lg:w-full mx-auto">
+      <div className="lg:w-[450px] w-[400px] mb-16 text-center mx-auto">
         <p className="text-sky-700 text-base font-bold">PRICE PLANS</p>
-        <h1 className="text-5xl my-8 text-gray-800 font-bold">
+        <h1 className="lg:text-5xl text-4xl my-8 text-gray-800 font-bold">
           Get Your Best Plans Quickly
         </h1>
         <p className="text-gray-600 text-lg">
@@ -69,7 +69,7 @@ const PricePlan = () => {
 
       <div
         ref={priceRef}
-        className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
+        className="grid mx-auto grid-cols-1 lg:grid-cols-3 gap-10 md:grid-cols-2">
         {plans.map((plan) => (
           <div
             key={plan.id}

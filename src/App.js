@@ -9,7 +9,7 @@ function App() {
   
   return (
 
-    <div>
+    <div className="overflow-x-hidden">
       <RouterProvider router={router}></RouterProvider>
       <Toaster position="top-center" reverseOrder={false} />
     </div>

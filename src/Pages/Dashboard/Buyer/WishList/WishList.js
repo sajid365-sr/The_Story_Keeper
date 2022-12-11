@@ -51,7 +51,8 @@ const WishList = () => {
                     <span className="text-3xl text-[#1da9c5] font-bold">
                       {list.price} <span>&#2547;</span>
                     </span>
-                    <button className="btn btn-sm bg-[#057be8] text-gray-100 border-none  rounded-none px-8 text-lg">Pay</button>
+                    <Link to={`/dashboard/payment2/${list.productId}`}>
+                    <button className="btn btn-sm bg-[#057be8] text-gray-100 border-none  rounded-none px-8 text-lg">Pay</button></Link>
                     </div>
                   </div>
                 </div>

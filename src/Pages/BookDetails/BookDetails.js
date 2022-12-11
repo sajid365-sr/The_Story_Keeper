@@ -59,7 +59,7 @@ const BookDetails = () => {
         picture,
         price:resalePrice,
         author,
-        listId:book._id,
+        productId:book._id,
         email:user.email
       }
     
@@ -83,9 +83,9 @@ const BookDetails = () => {
     <section className="bg-zinc-300 mb-36 mt-20">
       <div className="max-w-screen-xl py-24 mx-auto flex lg:flex-row flex-col gap-20">
         {/* Image */}
-        <div className="bg-white h-[600px] p-14 lg:w-1/2 w-11/12 mx-auto">
+        <div className="bg-white lg:h-[600px] rounded-tl-3xl rounded-br-3xl border-4 border-gray-800 h-[460px] p-14 lg:w-1/2 w-11/12 mx-auto">
           <img
-            className="mx-auto lg:w-2/3 w-10/12 hover:-rotate-6 transition-all duration-500"
+            className="mx-auto lg:w-2/3 w-3/4 hover:-rotate-6 transition-all duration-500"
             src={picture}
             alt=""
           />
@@ -122,7 +122,7 @@ const BookDetails = () => {
         </div>
       </div>
       {/* Seller Info */}
-      <div className="max-w-screen-xl lg:px-20 px-0 flex lg:flex-row flex-col items-center lg:gap-32 gap-10 pb-16 mx-auto">
+      <div className="max-w-screen-xl lg:px-20 px-10 flex lg:flex-row flex-col lg:gap-32 gap-10 pb-16 mx-auto">
         <div>
           <p className="text-3xl flex gap-3 mb-3 items-center text-gray-600">
             Seller Info{" "}
@@ -167,7 +167,7 @@ const BookDetails = () => {
          }
          </div>
          <button onClick={ handleWishList } className="border border-gray-800 p-1">
-         <FaRegHeart title="Make wish list" className="text-4xl" />
+         <FaRegHeart title="Make wish list" className="text-4xl hover:text-red-500" />
          </button>
         </div>
       </div>

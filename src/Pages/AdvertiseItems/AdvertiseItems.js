@@ -18,7 +18,7 @@ const AdvertiseItems = () => {
         {items.map((item) => (
           <div
             key={item._id}
-            className="card bg-zinc-200 shadow-xl rounded-md "
+            className="card bg-zinc-200 shadow-xl w-3/4 lg:w-full mx-auto rounded-md "
           >
             <figure className="py-8 bg-white">
               <Link to={`/books/${item._id}`}>
