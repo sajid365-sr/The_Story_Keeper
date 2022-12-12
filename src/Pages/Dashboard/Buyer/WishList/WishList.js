@@ -10,7 +10,7 @@ const WishList = () => {
     queryKey: ["wishList"],
     queryFn: async () => {
       const res = await fetch(
-        `https://the-story-keeper-server-sajid365-sr.vercel.app/wishList?email=${user?.email}`
+        `http://localhost:5000/wishList?email=${user?.email}`
       );
       const data = await res.json();
       return data;

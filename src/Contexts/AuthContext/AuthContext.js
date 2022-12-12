@@ -12,6 +12,7 @@ const AuthContext = ({ children }) => {
 const [user, setUser] = useState(null);
 const [loading, setLoading] = useState(true);
 
+
 // email/password create user
 const createUser = (email, password) =>{
     setLoading(true);

@@ -3,15 +3,31 @@ import { Link, Outlet } from "react-router-dom";
 import { UserContext } from "../../Contexts/AuthContext/AuthContext";
 import UseVerifyUser from "../../Hooks/UseVerifyUser";
 import Header from "../../Pages/Shared/Header/Header";
+import { FaAlignRight } from "react-icons/fa";
 
 const DashboardLayout = () => {
   const { user } = useContext(UserContext);
   const [userType] = UseVerifyUser(user?.email);
   const linkStyle = 'font-bold bg-gray-100 px-5 py-2 rounded-lg shadow-xl mb-4 hover:bg-[#621e85] hover:text-gray-200 transition-all duration-500 text-xl text-gray-600'
 
+  
+  
+
   return (
     <div>
+      
       <Header></Header>
+       {/* Dashboard toggle button */}
+       <div className="flex lg:hidden justify-end -mt-16 mr-16">
+       <label
+              htmlFor="dashboard-drawer"
+              tabIndex={2}
+              className="btn btn-ghost lg:hidden"
+            >
+              <FaAlignRight className="text-xl"/>
+            </label>
+       </div>
+        
       <div className="drawer drawer-mobile">
         <input
           id="dashboard-drawer"

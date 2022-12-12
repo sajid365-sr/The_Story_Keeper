@@ -63,7 +63,7 @@ const BookDetails = () => {
         email:user.email
       }
     
-    fetch('https://the-story-keeper-server-sajid365-sr.vercel.app/wishList',{
+    fetch('http://localhost:5000/wishList',{
       method:'post',
       headers:{
         'content-type':'application/json'

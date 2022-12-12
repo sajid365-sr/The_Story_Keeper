@@ -22,7 +22,7 @@ const BookingModal = ({book, setCloseModal, setBuyStatus}) => {
         order.author = author;
        
 
-            fetch('https://the-story-keeper-server-sajid365-sr.vercel.app/orders', {
+            fetch('http://localhost:5000/orders', {
                 method:'post',
                 headers:{
                     'content-type':'application/json',

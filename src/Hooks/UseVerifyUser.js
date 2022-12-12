@@ -11,7 +11,7 @@ const UseVerifyUser = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`https://the-story-keeper-server-sajid365-sr.vercel.app/users/type?email=${email}`,{
+      fetch(`http://localhost:5000/users/type?email=${email}`,{
         headers:{
           authorization: `Bearer ${localStorage.getItem('AccessToken')}`
         }

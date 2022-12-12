@@ -54,7 +54,7 @@ const CheckOutForm = ({ items }) => {
   if (success) {
     // Set payment status pending to success
     fetch(
-      `https://the-story-keeper-server-sajid365-sr.vercel.app/payment/status/${productId}`
+      `http://localhost:5000/payment/status/${productId}`
     )
       .then((res) => res.json())
       .then((data) => {});
@@ -68,7 +68,7 @@ const CheckOutForm = ({ items }) => {
     };
 
     // Store payment info in the database.........
-    fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/payments", {
+    fetch("http://localhost:5000/payments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -79,7 +79,7 @@ const CheckOutForm = ({ items }) => {
   }
 
   return (
-    <div className="flex w-11/12 lg:flex-row flex-col ml-10 mt-10 mb-24 shadow-xl p-10 rounded-lg gap-10">
+    <div className="flex w-11/12 mx-auto lg:flex-row flex-col lg:ml-10 mt-10 mb-24 shadow-xl lg:p-10 p-5 rounded-lg gap-10">
       <div className="lg:w-3/5 w-full shadow-2xl lg:p-10 p-5">
         <p className="text-xl font-semibold text-gray-600">{title}</p>
         <p className="text-5xl text-teal-600 mb-10 font-semibold">

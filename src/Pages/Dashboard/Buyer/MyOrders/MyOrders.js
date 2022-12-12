@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Contexts/AuthContext/AuthContext";
 import { FaCheckCircle } from "react-icons/fa";
 import Loading from "../../../Shared/Loading/Loading";
+import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const MyOrders = () => {
   const { user } = useContext(UserContext);
@@ -16,7 +18,7 @@ const MyOrders = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `https://the-story-keeper-server-sajid365-sr.vercel.app/myOrders?email=${user?.email}`,
+          `http://localhost:5000/myOrders?email=${user?.email}`,
           {
             headers: {
               authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
@@ -48,33 +50,33 @@ const MyOrders = () => {
           </Link>
         </div>
       ) : (
-        <table className="table w-full">
-          <thead>
-            <tr>
-              <th className="text-lg text-gray-700"></th>
-              <th className="text-lg text-gray-700">Picture</th>
-              <th className="text-lg text-gray-700">Details</th>
-              <th className="text-lg text-gray-700">Price</th>
-              <th className="text-lg text-gray-700">Status</th>
-            </tr>
-          </thead>
-          <tbody>
+        <Table className="table w-full">
+          <Thead>
+            <Tr>
+              <Th className="text-lg text-gray-700"></Th>
+              <Th className="text-lg text-gray-700">Picture</Th>
+              <Th className="text-lg text-gray-700">Details</Th>
+              <Th className="text-lg text-gray-700">Price</Th>
+              <Th className="text-lg text-gray-700">Status</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
             {orders.map((order, i) => (
-              <tr key={order._id} className=" hover text-gray-600">
-                <th>{i + 1}</th>
-                <th className="p-2">
+              <Tr key={order._id} className=" hover text-gray-600">
+                <Th>{i + 1}</Th>
+                <Th className="p-2">
                   <div className="avatar lg:w-1/4">
                     <img src={order.picture} alt="order" />
                   </div>
-                </th>
-                <th>
+                </Th>
+                <Th>
                   <p className="text-xl text-gray-800">{order.title}</p>
                   <p className="text-sm">{order.author}</p>
-                </th>
-                <th className="text-3xl text-[#1da9c5] font-bold">
+                </Th>
+                <Th className="text-3xl text-[#1da9c5] font-bold">
                   {order.price} (&#2547;)
-                </th>
-                <th>
+                </Th>
+                <Th>
                   {order.status === "pending" && (
                     <Link
                       to={`/dashboard/payment/${order._id}`}
@@ -90,11 +92,11 @@ const MyOrders = () => {
                       <FaCheckCircle /> Paid
                     </p>
                   )}
-                </th>
-              </tr>
+                </Th>
+              </Tr>
             ))}
-          </tbody>
-        </table>
+          </Tbody>
+        </Table>
       )}
     </div>
   );

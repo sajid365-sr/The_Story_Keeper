@@ -28,7 +28,7 @@ const DisplayError = () => {
             <h4 className="text-2xl">
               Please{" "}
               
-                <span role='button' onClick={ () => handleLogOut} className="text-blue-700 font-medium underline">SignOut</span>
+                <span role='button' onClick={handleLogOut} className="text-blue-700 font-medium underline">SignOut</span>
               
               and login back again.
             </h4>

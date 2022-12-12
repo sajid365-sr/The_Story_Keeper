@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { FaCheckCircle } from "react-icons/fa";
 import Loading from "../../../Shared/Loading/Loading";
 
+
 const MyProducts = () => {
   const { user } = useContext(UserContext);
 
@@ -20,7 +21,7 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `https://the-story-keeper-server-sajid365-sr.vercel.app/myProducts?email=${user?.email}`,
+          `http://localhost:5000/myProducts?email=${user?.email}`,
           {
             headers: {
               authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
@@ -43,7 +44,7 @@ const MyProducts = () => {
   const handleDelete = (id) => {
     axios
       .delete(
-        `https://the-story-keeper-server-sajid365-sr.vercel.app/myProduct/delete/${id}`,
+        `http://localhost:5000/myProduct/delete/${id}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
@@ -61,7 +62,7 @@ const MyProducts = () => {
 
   const handleAdvertise = (product) => {
     axios
-      .post("https://the-story-keeper-server-sajid365-sr.vercel.app/advertise", {
+      .post("http://localhost:5000/advertise", {
         product,
       })
       .then((res) => {

@@ -18,7 +18,7 @@ const AddAProduct = () => {
     queryKey: ["categoryName"],
     queryFn: async () => {
       const res = await fetch(
-        "https://the-story-keeper-server-sajid365-sr.vercel.app/categories"
+        "http://localhost:5000/categories"
       );
       const data = await res.json();
       refetch();
@@ -57,7 +57,7 @@ const AddAProduct = () => {
           book.picture = imgData.data.url;
           book.status = "available";
 
-          fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/books", {
+          fetch("http://localhost:5000/books", {
             method: "post",
             headers: {
               "content-type": "application/json",

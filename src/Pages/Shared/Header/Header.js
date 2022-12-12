@@ -2,19 +2,17 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../Assets/logo.png";
 import { UserContext } from "../../../Contexts/AuthContext/AuthContext";
-import { FaUserAlt, FaCloudUploadAlt } from "react-icons/fa";
+import { FaUserAlt, FaCloudUploadAlt, FaBars } from "react-icons/fa";
 import UseGetAdvertiseItem from "../../../Hooks/UseGetAdvertiseItem";
+
 
 const Header = () => {
   const { user, logOut, updateUser } = useContext(UserContext);
   const [items, refetch] = UseGetAdvertiseItem();
   const [viewModal, setViewModal] = useState(true);
   const ImageHostKey = process.env.REACT_APP_imgUploadKey;
-
-  refetch();
-
-
-  const dashboardToggleLink = 'https://the-story-keeper-a3fc5.web.app/dashboard';
+  const [uploadImg, setUploadImg] = useState(false);
+  
 
   const navStyle =
     "lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-[#291334] lg:mb-0 mb-5 font-medium border-gray-800";
@@ -53,6 +51,7 @@ const Header = () => {
 
   const handleModalSubmit = (event) => {
     event.preventDefault();
+    setUploadImg(true);
 
     const photo = event.target.uploadPhoto.files[0];
     const formData = new FormData();
@@ -71,35 +70,24 @@ const Header = () => {
           updateUser(userPhoto)
             .then(() => {
               setViewModal(false);
+              setUploadImg(false);
             })
             .catch((e) => console.error(e));
         }
       });
   };
+  refetch();
 
   return (
     <section className="lg:max-w-screen-xl w-11/12 my-4 mx-auto">
       <div className="flex items-center bg-base-100">
-        <div className="lg:w-[20%] flex w-2/3">
+        <div className="lg:w-[20%] items-center flex w-2/3">
           <div className="dropdown">
             <label
               tabIndex={0}
-              className="btn  btn-info hover:text-gray-100 bg-opacity-30 lg:hidden"
+              className="btn btn-info rounded-md btn-sm hover:text-gray-100 bg-opacity-30 lg:hidden"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5  "
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <FaBars className="text-xl"/>
             </label>
             <ul
               tabIndex={0}
@@ -123,7 +111,7 @@ const Header = () => {
             </ul>
           </div>
           <Link className="flex items-center" to="/">
-            <img className="w-[50px]" src={logo} alt="" />
+            <img className="lg:w-[50px] w-[40px]" src={logo} alt="" />
             <p className="text-xl font-Kaushan text-[#291334] font-semibold">
               The Story Keeper
             </p>
@@ -183,31 +171,6 @@ const Header = () => {
             </div>
           )}
 
-          
-
-          {/* Dashboard toggle button */}
-          {user && (window.location.href === `${dashboardToggleLink}` || window.location.href === `${dashboardToggleLink}/allSeller` || window.location.href === `${dashboardToggleLink}/allBuyer` || window.location.href === `${dashboardToggleLink}/addAProduct` || window.location.href === `${dashboardToggleLink}/myProducts` || window.location.href === `${dashboardToggleLink}/myOrders` || window.location.href === `${dashboardToggleLink}/myWishList`) && (
-            <label
-              htmlFor="dashboard-drawer"
-              tabIndex={2}
-              className="btn btn-ghost lg:hidden"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
-          )}
         </div>
       </div>
 
@@ -228,7 +191,11 @@ const Header = () => {
                     <FaCloudUploadAlt className="text-4xl" />
                     <p className="mb-2 text-sm text-gray-500">
                       <span className="font-semibold">
-                        Click to upload your photo
+                        {
+                          uploadImg? 'Uploading...'
+                          :
+                          'Click to upload your photo'
+                        }
                       </span>
                     </p>
                   </div>

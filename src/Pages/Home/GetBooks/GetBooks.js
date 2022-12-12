@@ -10,7 +10,7 @@ const GetBooks = () => {
     queryKey: ["books"],
     queryFn: async () => {
       const res = await fetch(
-        "https://the-story-keeper-server-sajid365-sr.vercel.app/books"
+        "http://localhost:5000/books"
       );
       const data = await res.json();
       return data;

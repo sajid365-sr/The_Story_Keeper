@@ -10,7 +10,7 @@ const UseGetAdvertiseItem = () => {
 const {data:items = [], refetch} = useQuery({
     queryKey:['items'],
     queryFn: async()=>{
-        const res = await fetch('https://the-story-keeper-server-sajid365-sr.vercel.app/advertise',{
+        const res = await fetch('http://localhost:5000/advertise',{
             headers:{
                 authorization : `Bearer ${localStorage.getItem('AccessToken')}`
               }

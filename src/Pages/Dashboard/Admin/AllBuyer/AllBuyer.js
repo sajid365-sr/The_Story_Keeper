@@ -1,44 +1,44 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import toast from "react-hot-toast";
+import { Table, Thead, Tbody, Tr, Th } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 const AllBuyer = () => {
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/allBuyer",{
-        headers:{
-          authorization : `Bearer ${localStorage.getItem('AccessToken')}`
-        }
+      const res = await fetch("http://localhost:5000/allBuyer", {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+        },
       });
       const data = await res.json();
-     
+
       return data;
     },
   });
-  
 
   // Delete buyer
-  const handleDeleteBuyer = (email) =>{
-    const confirm = window.confirm(`Are you sure want to delete ${email}?`,{
-      headers:{
-        authorization : `Bearer ${localStorage.getItem('AccessToken')}`
-      }
+  const handleDeleteBuyer = (email) => {
+    const confirm = window.confirm(`Are you sure want to delete ${email}?`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+      },
     });
-    if(confirm){
-      fetch(`https://the-story-keeper-server-sajid365-sr.vercel.app/delete/buyer?email=${email}`)
-      .then(res => res.json())
-      .then(data => {
-        
-        if(data.acknowledged){
-          toast.success('Buyer deleted successfully');
-          refetch();
-        }
-      })
+    if (confirm) {
+      fetch(`http://localhost:5000/delete/buyer?email=${email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            toast.success("Buyer deleted successfully");
+            refetch();
+          }
+        });
     }
-  }
+  };
 
-  refetch()
+  refetch();
   return (
     <div>
       <h1 className="text-4xl text-center my-10 underline text-gray-600 font-semibold">
@@ -52,39 +52,38 @@ const AllBuyer = () => {
             </h1>
           </div>
         ) : (
-          <table className="table w-3/4 mx-auto">
-            <thead>
-              <tr>
-                <th className="text-lg text-gray-700"></th>
-                <th className="text-lg text-gray-700">Name</th>
-                <th className="text-lg text-gray-700">Email</th>
-                <th className="text-lg text-gray-700">Status</th>
-                <th className="text-lg text-gray-700">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {buyers.map((buyer, i) => (
-                <tr key={buyer._id} className=" hover text-gray-600">
-                  <th>{i + 1}</th>
-                  <th>
-                    <p>{buyer.name}</p>
-                  </th>
-                  <th>
-                    <p className="text-primary">{buyer.email}</p>
-                  </th>
-                  <th>
-                     <p>Orders:</p> 
-                     <p>Pending:</p> 
-                     <p>paid:</p> 
-                  </th>
-                  <th>
-                      
-                      <button onClick={ () => handleDeleteBuyer(buyer.email)} className="btn btn-sm rounded-none btn-outline">Delete</button>
-                  </th>
+            <table className="table w-3/4 mx-auto">
+              <thead>
+                <tr>
+                  <th className="text-lg text-gray-700"></th>
+                  <th className="text-lg text-gray-700">Name</th>
+                  <th className="text-lg text-gray-700">Email</th>
+                  <th className="text-lg text-gray-700">Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {buyers.map((buyer, i) => (
+                  <tr key={buyer._id} className=" hover text-gray-600">
+                    <th>{i + 1}</th>
+                    <th>
+                      <p>{buyer.name}</p>
+                    </th>
+                    <th>
+                      <p className="text-primary">{buyer.email}</p>
+                    </th>
+                    <th>
+                      <button
+                        onClick={() => handleDeleteBuyer(buyer.email)}
+                        className="btn btn-sm rounded-none btn-outline"
+                      >
+                        Delete
+                      </button>
+                    </th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          
         )}
       </div>
     </div>

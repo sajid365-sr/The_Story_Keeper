@@ -8,16 +8,11 @@ import { FaCommentAlt } from "react-icons/fa";
 
 const Shop = () => {
     const books = useLoaderData();
-    const filterAvailable = []
-    books.forEach(category => {
-      const filterBook = category.filter(cat => cat.status !== 'sold');
-      filterAvailable.push(filterBook);
-    });
-    
 
+    
     return (
         <section className="max-w-screen-xl py-10 mb-52 mx-auto">
-        {filterAvailable.map((category,i) => (
+        {books.map((category,i) => (
           <div key={i} className="mb-24">
             <Link to={`/category/${category[0].categoryId}`} className="items-center text-gray-700 hover:text-blue-600 hover:underline inline-flex  mb-2 gap-1 ">
               <h1 className="text-3xl ml-6 lg:ml-0 font-semibold ">
