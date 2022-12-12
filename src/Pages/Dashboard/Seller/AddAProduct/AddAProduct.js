@@ -17,9 +17,11 @@ const AddAProduct = () => {
   const { data: categoryName = [], refetch } = useQuery({
     queryKey: ["categoryName"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch(
+        "http://localhost:5000/categories"
+      );
       const data = await res.json();
-      refetch()
+      refetch();
       return data;
     },
   });
@@ -29,11 +31,8 @@ const AddAProduct = () => {
 
     if (value === "Others") {
       setCategory(true);
-      
     }
   };
-
-  
 
   const handleEmail = (event) => {
     event.target.value = user?.email;
@@ -42,7 +41,6 @@ const AddAProduct = () => {
   const handleName = (event) => {
     event.target.value = user?.displayName ? user.displayName : "";
   };
-
 
   const handleFormSubmit = (book, event) => {
     const img = book.picture[0];
@@ -185,7 +183,6 @@ const AddAProduct = () => {
                   <div className="w-full">
                     <input
                       type="text"
-                      
                       className="block pt-3 px-5 w-full text-base text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-[#155c72] focus:border-b-4 peer"
                       {...register("category", {
                         required: "Category is required",
@@ -218,16 +215,10 @@ const AddAProduct = () => {
                     {category}
                   </option>
                 ))}
-                <option
-                  
-                  className="text-gray-600"
-                  value="Others"
-                >
+                <option className="text-gray-600" value="Others">
                   Others
                 </option>
               </select>
-
-              
             )}
           </div>
         </div>

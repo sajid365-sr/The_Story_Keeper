@@ -39,7 +39,7 @@ const facebookSignIn = () =>{
 }
 
 // Logout user
-const logOUt = () =>{
+const logOut = () =>{
     return signOut(auth);
 }
 
@@ -54,9 +54,9 @@ useEffect( () =>{
     }
 }, [])
 
+console.log(user)
 
-
-const authInfo = {user,  createUser, signIn, logOUt, updateUser, loading, googleSignIn, facebookSignIn }
+const authInfo = {user,  createUser, signIn, logOut, updateUser, loading, googleSignIn, facebookSignIn }
 
   return (
     <div>

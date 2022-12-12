@@ -7,18 +7,15 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { FaTimes } from "react-icons/fa";
 
-
 const CheckOutForm = ({ items }) => {
-  const { title, price, picture, status, phone, name, email, productId } = items;
-  
+  const { title, price, picture, email, productId } = items;
+
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
   const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState(false);
   const [transactionId, setTransactionId] = useState("");
-
-
 
   // Submit form
   const handleSubmit = async (event) => {
@@ -49,37 +46,36 @@ const CheckOutForm = ({ items }) => {
     }
   };
 
-  const handleErrorCancel = () =>{
-      setProcessing(false);
-      setCardError(false);
-  }
+  const handleErrorCancel = () => {
+    setProcessing(false);
+    setCardError(false);
+  };
 
-  if(success){
-
+  if (success) {
     // Set payment status pending to success
-      fetch(`http://localhost:5000/payment/status/${productId}`)
-      .then(res => res.json())
-      .then(data => {
-          console.log(data)
-      });
+    fetch(
+      `http://localhost:5000/payment/status/${productId}`
+    )
+      .then((res) => res.json())
+      .then((data) => {});
 
-      const payment = {
-        price,
-        TnxId: transactionId,
-        email,
-        productId,
-        paymentTime: new Date().toLocaleString()
-      };
+    const payment = {
+      price,
+      TnxId: transactionId,
+      email,
+      productId,
+      paymentTime: new Date().toLocaleString(),
+    };
 
-      // Store payment info in the database.........
-      fetch("http://localhost:5000/payments", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
-        },
-        body: JSON.stringify(payment),
-      })
+    // Store payment info in the database.........
+    fetch("http://localhost:5000/payments", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+      },
+      body: JSON.stringify(payment),
+    });
   }
 
   return (
@@ -104,7 +100,10 @@ const CheckOutForm = ({ items }) => {
           <PaymentElement className="mb-5" />
 
           {success ? (
-            <button disabled className="btn w-full rounded-sm text-xl capitalize px-6 mt-5">
+            <button
+              disabled
+              className="btn w-full rounded-sm text-xl capitalize px-6 mt-5"
+            >
               Paid
             </button>
           ) : (

@@ -5,6 +5,7 @@ import { UserContext } from "../../../../Contexts/AuthContext/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FaCheckCircle } from "react-icons/fa";
+import Loading from "../../../Shared/Loading/Loading";
 
 const MyProducts = () => {
   const { user } = useContext(UserContext);
@@ -35,15 +36,20 @@ const MyProducts = () => {
     },
   });
   refetch();
-  console.log(products)
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/myProduct/delete/${id}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
-        },
-      })
+      .delete(
+        `http://localhost:5000/myProduct/delete/${id}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.statusText === "OK") {
           toast.success("Item deleted successfully");
@@ -91,56 +97,54 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              products.map((product, i) => (
-                <tr key={product._id} className="h-10 hover text-gray-600">
-                  <th>{i + 1}</th>
-                  <th className="p-2">
-                    <div className="avatar">
-                      <div className="w-16">
-                        <img src={product.picture} alt="order" />
-                      </div>
+            {products.map((product, i) => (
+              <tr key={product._id} className="h-10 hover text-gray-600">
+                <th>{i + 1}</th>
+                <th className="p-2">
+                  <div className="avatar">
+                    <div className="w-16">
+                      <img src={product.picture} alt="order" />
                     </div>
-                  </th>
-                  <th>{product.title}</th>
-                  <th className="text-xl">{product.resalePrice} (&#2547;)</th>
-                  <th>
-                    {
-                      product.status === 'available' &&
-                      <p className="text-green-600">Available</p>
-                    }
-                    {
-                      product.status === 'pending' &&
-                      <p className="text-amber-600">waiting fo payment..</p>
-                    }
-                    {
-                      product.status === 'sold' &&
-                      <p className="text-blue-600 flex items-center gap-2 text-xl"><FaCheckCircle/> Sold</p>
-                    }
-                    
-                    {product.status === "available" && (
-                      <button
-                        onClick={() => handleAdvertise(product)}
-                        className={`btn btn-sm rounded-none ${
-                          product.advertise ? "btn-success" : "btn-primary"
-                        }`}
-                      >
-                        {product.advertise ? "Advertised" : "Advertise"}
-                      </button>
-                    )}
-                  </th>
-                  <th>
-                    {product.status === "available" && (
-                      <button
-                        onClick={() => handleDelete(product._id)}
-                        className="btn rounded-none btn-sm"
-                      >
-                        Delete
-                      </button>
-                    )}
-                  </th>
-                </tr>
-              ))}
+                  </div>
+                </th>
+                <th>{product.title}</th>
+                <th className="text-xl">{product.resalePrice} (&#2547;)</th>
+                <th>
+                  {product.status === "available" && (
+                    <p className="text-green-600">Available</p>
+                  )}
+                  {product.status === "pending" && (
+                    <p className="text-amber-600">waiting fo payment..</p>
+                  )}
+                  {product.status === "sold" && (
+                    <p className="text-blue-600 flex items-center gap-2 text-xl">
+                      <FaCheckCircle /> Sold
+                    </p>
+                  )}
+
+                  {product.status === "available" && (
+                    <button
+                      onClick={() => handleAdvertise(product)}
+                      className={`btn btn-sm rounded-none ${
+                        product.advertise ? "btn-success" : "btn-primary"
+                      }`}
+                    >
+                      {product.advertise ? "Advertised" : "Advertise"}
+                    </button>
+                  )}
+                </th>
+                <th>
+                  {product.status === "available" && (
+                    <button
+                      onClick={() => handleDelete(product._id)}
+                      className="btn rounded-none btn-sm"
+                    >
+                      Delete
+                    </button>
+                  )}
+                </th>
+              </tr>
+            ))}
           </tbody>
         </table>
       )}

@@ -34,9 +34,9 @@ password, stripe payment secret and JWT also. So I've implement environment vari
 
 ## FOLLOW ME ON
 
-Linkedin [https://www.linkedin.com/in/sajid365-sr/]
-Twitter [https://twitter.com/sajid365_sr]
-Facebook [https://www.facebook.com/sajid365.sr]
+`Linkedin` [https://www.linkedin.com/in/sajid365-sr/]
+`Twitter` [https://twitter.com/sajid365_sr]
+`Facebook` [https://www.facebook.com/sajid365.sr]
 
 
 ## !!!! SEE YOU IN THE NEXT PROJECT !!!!

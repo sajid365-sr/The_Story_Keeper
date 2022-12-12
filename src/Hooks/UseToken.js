@@ -1,12 +1,12 @@
 
 import { useEffect, useState } from 'react';
 
-const UseToken = (email,state) => {
+const UseToken = (email) => {
     const [token, setToken] = useState("");
-
+    
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/jwt?email=${email}&state=${state.new}`)
+      fetch(`http://localhost:5000/jwt?email=${email}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.accessToken) {
@@ -15,7 +15,7 @@ const UseToken = (email,state) => {
           }
         });
     }
-  }, [email,state]);
+  }, [email]);
   return token;
 };
 

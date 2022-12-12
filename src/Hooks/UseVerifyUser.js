@@ -6,7 +6,7 @@ import { UserContext } from '../Contexts/AuthContext/AuthContext';
 const UseVerifyUser = (email) => {
     const [userType, setUserType] = useState('');
     const [isUserLoading, setIsUserLoading] = useState(true);
-    const {logOUt} = useContext(UserContext);
+    const {logOut} = useContext(UserContext);
     const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,14 +19,14 @@ const UseVerifyUser = (email) => {
         .then((res) => res.json())
         .then((data) => {
           if(data.message === 'Forbidden Access'){
-            logOUt();
+            logOut();
             navigate('/login');
           }
           setUserType(data.userType);
           setIsUserLoading(false)
         });
     }
-  }, [email,logOUt,userType,navigate]);
+  }, [email,logOut,userType,navigate]);
   return [userType, isUserLoading];
 };
 

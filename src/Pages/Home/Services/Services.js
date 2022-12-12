@@ -16,7 +16,7 @@ const Services = () => {
       title: "Used Book Buying",
       about:
         "At our store, readers and students can buy books that have been sent to us as a charity.",
-      animation:'translate-y-[60%] opacity-0'
+      animation: "translate-y-[60%] opacity-0",
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ const Services = () => {
       title: "Super Easy to Order",
       about:
         "You get to choose from multiple book categories and genres online",
-      animation:'translate-y-[50%] opacity-0'
+      animation: "translate-y-[50%] opacity-0",
     },
     {
       id: 3,
@@ -32,19 +32,20 @@ const Services = () => {
       title: "Free Delivery",
       about:
         "We find the exact book that no other store has and deliver to you for free",
-      animation:'translate-y-[30%] opacity-0'
+      animation: "translate-y-[30%] opacity-0",
     },
   ];
   return (
-    <div
-      ref={serviceRef}
-      className= "max-w-screen-xl mx-auto mb-52"
-    >
+    <div ref={serviceRef} className="max-w-screen-xl mx-auto mb-52">
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
         {services.map((service) => (
           <div
             key={service.id}
-            className={`card w-96 pb-8 shadow-xl mx-auto mb-20 lg:mb-0 bg-[#856090] ${visible?'translate-y-0 transition-all duration-1000 opacity-100':`${service.animation}`}`}
+            className={`card w-96 pb-8 shadow-xl mx-auto mb-20 lg:mb-0 bg-[#856090] ${
+              visible
+                ? "translate-y-0 transition-all duration-1000 opacity-100"
+                : `${service.animation}`
+            }`}
           >
             <figure className="px-10 pt-10">
               <img className="w-[80px]" src={service.img} alt="Shoes" />
@@ -53,7 +54,9 @@ const Services = () => {
               <h2 className="card-title text-gray-100 font-bold text-3xl">
                 {service.title}
               </h2>
-              <p className="text-gray-300  font-medium mt-10">{service.about}</p>
+              <p className="text-gray-300  font-medium mt-10">
+                {service.about}
+              </p>
             </div>
             <p
               className={`text-amber-400 flex justify-center cursor-pointer hover:underline items-center gap-3 ${

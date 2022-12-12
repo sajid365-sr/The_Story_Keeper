@@ -6,7 +6,7 @@ import { FaUserAlt, FaCloudUploadAlt } from "react-icons/fa";
 import UseGetAdvertiseItem from "../../../Hooks/UseGetAdvertiseItem";
 
 const Header = () => {
-  const { user, logOUt, updateUser } = useContext(UserContext);
+  const { user, logOut, updateUser } = useContext(UserContext);
   const [items, refetch] = UseGetAdvertiseItem();
   const [viewModal, setViewModal] = useState(true);
   const ImageHostKey = process.env.REACT_APP_imgUploadKey;
@@ -43,7 +43,7 @@ const Header = () => {
 
   // Logout user
   const handleLogOut = () => {
-    logOUt()
+    logOut()
       .then(() => {})
       .catch((e) => console.error(e));
   };

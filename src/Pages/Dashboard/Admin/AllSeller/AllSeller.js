@@ -39,7 +39,6 @@ const AllSeller = () => {
         .then(data => {
           
           if(data.acknowledged){
-            console.log(data)
             toast.success('Seller deleted successfully');
             refetch();
           }

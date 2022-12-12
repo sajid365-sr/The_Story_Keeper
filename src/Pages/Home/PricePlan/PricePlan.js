@@ -20,9 +20,9 @@ const PricePlan = () => {
         "30% discount on every delivery",
         "24/7 support",
         "Sell only 2 books per month",
-        "Best for the students"
+        "Best for the students",
       ],
-      animation:'-translate-x-[50%] opacity-0',
+      animation: "-translate-x-[50%] opacity-0",
     },
     {
       id: 2,
@@ -34,9 +34,9 @@ const PricePlan = () => {
         "55% discount on every delivery",
         "24/7 support",
         "Sell only 10 books per month",
-        "Choose the best one"
+        "Choose the best one",
       ],
-      animation:'-translate-y-[30%] opacity-0',
+      animation: "-translate-y-[30%] opacity-0",
     },
     {
       id: 3,
@@ -48,9 +48,9 @@ const PricePlan = () => {
         "100% discount on every delivery",
         "24/7 support",
         "Sell unlimited books per month",
-        "Get access to all ancient book library"
+        "Get access to all ancient book library",
       ],
-      animation:'translate-x-[50%] opacity-0',
+      animation: "translate-x-[50%] opacity-0",
     },
   ];
 
@@ -69,11 +69,16 @@ const PricePlan = () => {
 
       <div
         ref={priceRef}
-        className="grid mx-auto grid-cols-1 lg:grid-cols-3 gap-10 md:grid-cols-2">
+        className="grid mx-auto grid-cols-1 lg:grid-cols-3 gap-10 md:grid-cols-2"
+      >
         {plans.map((plan) => (
           <div
             key={plan.id}
-            className={`bg-gray-200 px-10 py-16 rounded-lg max-w-sm ${visible?'translate-x-0 translate-y-0 transition-all duration-1000 opacity-100':`${plan.animation}`}`}
+            className={`bg-gray-200 px-10 py-16 rounded-lg max-w-sm ${
+              visible
+                ? "translate-x-0 translate-y-0 transition-all duration-1000 opacity-100"
+                : `${plan.animation}`
+            }`}
           >
             <h5 className="mb-4 flex gap-2 text-3xl font-semibold text-gray-500">
               {plan.name}
@@ -88,7 +93,14 @@ const PricePlan = () => {
             </div>
             <ul className="my-7 space-y-5">
               {plan.features.map((feature, i) => (
-                <li key={i} className={`flex space-x-3 ${visible?'translate-x-0 translate-y-0 transition-all duration-1000':`${plan.animation}`}`}>
+                <li
+                  key={i}
+                  className={`flex space-x-3 ${
+                    visible
+                      ? "translate-x-0 translate-y-0 transition-all duration-1000"
+                      : `${plan.animation}`
+                  }`}
+                >
                   <FaCheckCircle className="text-blue-600 " />
                   <span className="text-base text-gray-600 font-normal leading-tight">
                     {feature}

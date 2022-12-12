@@ -2,14 +2,12 @@
 import { Rating } from 'flowbite-react';
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { HiArrowNarrowRight } from "react-icons/hi";
 import { FaCommentAlt } from "react-icons/fa";
 
 
 const Categories = () => {
     const books = useLoaderData();
-    console.log(books)
-
+    
     return (
         <section className='my-24 max-w-screen-xl mx-auto'>
             <h1 className="text-4xl underline mb-16 text-gray-700 text-center font-semibold ">

@@ -3,9 +3,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../../../Contexts/AuthContext/AuthContext";
 import { FaCheckCircle } from "react-icons/fa";
-
-
-
+import Loading from "../../../Shared/Loading/Loading";
 
 const MyOrders = () => {
   const { user } = useContext(UserContext);
@@ -34,6 +32,9 @@ const MyOrders = () => {
     },
   });
   refetch();
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="overflow-x-auto mx-10 my-24">
@@ -74,17 +75,21 @@ const MyOrders = () => {
                   {order.price} (&#2547;)
                 </th>
                 <th>
-                  {
-                    order.status === 'pending' &&
-                    <Link to={`/dashboard/payment/${order._id}`} className="btn btn-sm bg-[#057be8] text-gray-100 border-none
-                    rounded-none px-8 text-lg">
-                     Pay
-                  </Link>
-                  }
-                  {
-                    order.status === 'paid' &&
-                    <p className="text-green-600 flex font-normal text-xl items-center gap-3"> <FaCheckCircle/> Paid</p>
-                  }
+                  {order.status === "pending" && (
+                    <Link
+                      to={`/dashboard/payment/${order._id}`}
+                      className="btn btn-sm bg-[#057be8] text-gray-100 border-none
+                    rounded-none px-8 text-lg"
+                    >
+                      Pay
+                    </Link>
+                  )}
+                  {order.status === "paid" && (
+                    <p className="text-green-600 flex font-normal text-xl items-center gap-3">
+                      {" "}
+                      <FaCheckCircle /> Paid
+                    </p>
+                  )}
                 </th>
               </tr>
             ))}

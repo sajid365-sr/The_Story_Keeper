@@ -19,8 +19,7 @@ const SignUp = () => {
   const [check, setCheck] = useState(false);
   const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState('');
-  const token = UseToken(userEmail,{new : true});
-
+  const token = UseToken(userEmail);
 
   if(token){
     navigate('/');
@@ -87,19 +86,65 @@ const SignUp = () => {
   // Google sign in
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then(() => {})
+      .then((result) => {
+
+        const user = result.user;
+       
+        const newUser = {
+          email:user?.email,
+          verified:false,
+          type:'buyer',
+          name:user?.displayName
+        }
+        setUserEmail(user?.email);
+        fetch("http://localhost:5000/users", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ newUser }),
+        })
+        .then((res) => res.json())
+        .then(data => {
+          
+        })
+
+      })
       .catch((e) => setError(e.message));
+
+      
   };
 
   //Facebook sign in
   const handleFacebookSignIn = () => {
     facebookSignIn()
-      .then(() => {})
+      .then((result) => {
+        const user = result.user;
+       
+        const newUser = {
+          email:user?.email,
+          verified:false,
+          type:'buyer',
+          name:user?.displayName
+        }
+        setUserEmail(user?.email);
+        fetch("http://localhost:5000/users", {
+          method: "post",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ newUser }),
+        })
+        .then((res) => res.json())
+        .then(data => {
+          
+        })
+      })
       .catch((e) => setError(e.message));
   };
 
   return (
-    <div className="bg-gradient-to-bl from-[#0a3f6b] to-secondary flex justify-center items-center  h-[100vh] lg:h-[95vh] lg:rounded-2xl my-12">
+    <div className="flex justify-center items-center  h-[100vh] lg:h-[95vh] lg:rounded-2xl my-12">
       <div className="lg:w-2/6 w-10/12 bg-info py-10 rounded-lg  bg-opacity-30">
         <h2 className="text-center mb-10 text-5xl font-Kaushan text-gray-900">
           SignUp
@@ -110,14 +155,14 @@ const SignUp = () => {
           action=""
         >
           <div>
-            <label className="text-gray-300" htmlFor="name">
+            <label className="text-gray-700 font-medium" htmlFor="name">
               Enter Your Name
             </label>
             <input
               type="text"
               name="name"
               placeholder="Type here"
-              className="input text-gray-700 mt-1 font-medium focus:outline-secondary w-full"
+              className="input text-gray-700 mt-1 font-medium w-full"
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
@@ -125,14 +170,14 @@ const SignUp = () => {
             )}
           </div>
           <div>
-            <label className="text-gray-300" htmlFor="name">
+            <label className="text-gray-700 font-medium" htmlFor="name">
               Enter Your Email
             </label>
             <input
               type="email"
               name="email"
               placeholder="Type here"
-              className="input text-gray-700 mt-1 font-medium focus:outline-secondary w-full"
+              className="input text-gray-700 mt-1 font-medium w-full"
               {...register("email", { required: "Email is required" })}
             />
             {errors.email && (
@@ -140,14 +185,14 @@ const SignUp = () => {
             )}
           </div>
           <div>
-            <label className="text-gray-300" htmlFor="name">
+            <label className="text-gray-700 font-medium" htmlFor="name">
               Enter Your password
             </label>
             <input
               type="password"
               name="password"
               placeholder="Type here"
-              className="input text-gray-700 mt-1 font-medium focus:outline-secondary w-full"
+              className="input text-gray-700 mt-1 font-medium w-full"
               {...register("password", { required: "Password is required" })}
             />
             {errors.password && (
@@ -157,34 +202,34 @@ const SignUp = () => {
           {error && <span className="text-error text-center">{error}</span>}
           <div className="form-control">
             <label className="label cursor-pointer">
-              <span className="label-text text-white font-medium tracking-widest">
+              <span className="label-text text-gray-700 font-semibold text-xl tracking-widest">
                 Seller Account?
               </span>
               <input
                 onClick={() => setCheck(true)}
                 type="checkbox"
                 name="checkbox"
-                className="toggle toggle-secondary"
+                className="toggle toggle-primary"
               />
             </label>
           </div>
 
-          <div className="divider">OR</div>
+          <div className="divider font-medium">OR</div>
           <div className="flex justify-center gap-5">
             <FaFacebook
               onClick={handleFacebookSignIn}
-              className="text-3xl hover:text-info"
+              className="text-3xl hover:text-primary"
               role="button"
             />
             <FaGoogle
               onClick={handleGoogleSignIn}
-              className="text-3xl hover:text-info"
+              className="text-3xl hover:text-primary"
               role="button"
             />
           </div>
-          <p className="text-sm mt-3">
+          <p className="text-base mt-3">
             Already have an account?{" "}
-            <Link className="underline text-info" to="/login">
+            <Link className="underline text-primary" to="/login">
               login
             </Link>{" "}
             here.
