@@ -74,7 +74,7 @@ const PricePlan = () => {
         {plans.map((plan) => (
           <div
             key={plan.id}
-            className={`bg-gray-200 px-5 lg:px-10 py-16 rounded-lg w-[350px] mx-auto lg:w-auto ${
+            className={`bg-gray-200 px-5 lg:px-10 py-16 rounded-lg w-[350px] mx-auto lg:w-full ${
               visible
                 ? "translate-x-0 translate-y-0 transition-all duration-1000 opacity-100"
                 : `${plan.animation}`

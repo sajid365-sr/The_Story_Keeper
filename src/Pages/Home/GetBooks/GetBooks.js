@@ -21,6 +21,7 @@ const GetBooks = () => {
 
   return (
     <section className="max-w-screen-xl lg:py-10 py-5 lg:mb-52 mb-36 mx-auto">
+      <h1 className="lg:text-5xl text-4xl text-gray-700 font-semibold text-center mb-20 underline">Explore books</h1>
       {books.map((category, i) => (
         <div key={i} className="mb-24">
           <Link

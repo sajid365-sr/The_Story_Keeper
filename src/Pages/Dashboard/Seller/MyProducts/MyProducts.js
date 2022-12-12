@@ -75,7 +75,7 @@ const MyProducts = () => {
 
   refetch();
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto my-20 w-11/12 mx-auto">
       {products.length < 1 ? (
         <div className="my-24 text-center">
           <h1 className="text-4xl text-gray-600 font-semibold">

@@ -20,6 +20,7 @@ const WishList = () => {
 
   return (
     <div className="mx-10">
+      <h1 className="lg:text-4xl text-4xl tracking-[5px] mt-8 text-gray-700 font-semibold mb-10 underline">Wish List</h1>
       {wishList.length < 1 ? (
         <div className="my-24 text-center">
           <h1 className="text-4xl text-gray-600 font-semibold">

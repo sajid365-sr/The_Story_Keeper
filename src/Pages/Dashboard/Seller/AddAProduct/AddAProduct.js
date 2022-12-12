@@ -77,9 +77,9 @@ const AddAProduct = () => {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto my-[7%] pt-10 pb-20 px-16 rounded-lg bg-zinc-800">
+    <div className="max-w-screen-lg mx-auto my-[20%] lg:my-[7%] pt-10 pb-20 lg:px-16 px-8 lg:rounded-lg bg-zinc-800">
       <h1 className="text-white text-center text-4xl">Add a new book</h1>
-      <p className="text-gray-400 text-sm mb-8  text-center">
+      <p className="text-gray-400 text-sm mb-20  text-center">
         Note: <span className="text-red-500 ml-1 text-xl">*</span> mark fields
         are mandatory
       </p>
@@ -209,7 +209,7 @@ const AddAProduct = () => {
                 className="block py-2.5 px-0 w-full text-sm text-gray-200 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer"
                 {...register("category", { required: "Category is required" })}
               >
-                <option className="text-gray-600">Choose a category</option>
+                <option>Choose a category</option>
                 {categoryName.map((category, i) => (
                   <option key={i} className="text-gray-600" value={category}>
                     {category}

@@ -37,7 +37,7 @@ const Services = () => {
   ];
   return (
     <div ref={serviceRef} className="max-w-screen-xl mx-auto mb-40 lg:mb-52">
-      <p className="text-4xl text-gray-700 text-bold text-center mb-20 underline">Services we provide</p>
+      <p className="lg:text-5xl text-4xl tracking-[5px] text-gray-700 font-semibold text-center mb-20 underline">Services <br /> we provide</p>
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
         {services.map((service) => (
           <div

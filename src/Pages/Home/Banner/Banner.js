@@ -26,7 +26,7 @@ const Banner = () => {
               <h1 className="lg:text-5xl text-3xl text-white">
                 Best condition{" "}
                 <span className="text-[#291334] bg-amber-600 px-5">
-                  used books
+                  used books buying
                 </span>
               </h1>
 
@@ -49,7 +49,7 @@ const Banner = () => {
           </div>
         </div>
 
-        <div
+        {/* <div
           style={{
             backgroundImage: ` url(${png2})`,
             backgroundPosition: "bottom",
@@ -131,7 +131,7 @@ const Banner = () => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
       </Carousel>
     </section>
   );
