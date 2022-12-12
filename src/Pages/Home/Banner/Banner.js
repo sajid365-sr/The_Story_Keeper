@@ -10,7 +10,7 @@ import { Carousel } from "flowbite-react";
 const Banner = () => {
   return (
     <section className="lg:h-[80vh] h-[45vh] w-11/12 lg:max-w-screen-xl mt-10 mx-auto mb-52">
-      <Carousel slideInterval={5000}>
+      <Carousel slideInterval={3000}>
         <div
           style={{
             backgroundImage: `url(${png1})`,
@@ -49,7 +49,7 @@ const Banner = () => {
           </div>
         </div>
 
-        {/* <div
+        <div
           style={{
             backgroundImage: ` url(${png2})`,
             backgroundPosition: "bottom",
@@ -131,7 +131,7 @@ const Banner = () => {
               />
             </div>
           </div>
-        </div> */}
+        </div>
       </Carousel>
     </section>
   );
