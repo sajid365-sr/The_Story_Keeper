@@ -16,7 +16,7 @@ const MyOrders = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/myOrders?email=${user?.email}`,
+          `https://the-story-keeper-server-sajid365-sr.vercel.app/myOrders?email=${user?.email}`,
           {
             headers: {
               authorization: `Bearer ${localStorage.getItem("AccessToken")}`,

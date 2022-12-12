@@ -12,7 +12,7 @@ const Footer = () => {
   return (
        
        <section className={` ${visible? 'translate-x-0 transition-all duration-1000 opacity-100' : '-translate-x-[20%] opacity-30'}`} ref={footerRef}>
-      <footer className="footer footer-center px-10 py-20 bg-[#291334] text-base-content">
+      <footer className="footer footer-center lg:px-10 px-5 py-20 bg-[#291334] text-base-content">
         <div className="grid grid-flow-col gap-4">
           <Link to="/home" className="link text-gray-300 text-base tracking-widest link-hover">
             Home

@@ -13,6 +13,9 @@ const Header = () => {
 
   refetch();
 
+
+  const dashboardToggleLink = 'https://the-story-keeper-a3fc5.web.app/dashboard';
+
   const navStyle =
     "lg:hover:border-b-2 hover:bg-zinc-300 lg:hover:bg-white px-3 lg:px-0 text-[#291334] lg:mb-0 mb-5 font-medium border-gray-800";
 
@@ -180,8 +183,10 @@ const Header = () => {
             </div>
           )}
 
+          
+
           {/* Dashboard toggle button */}
-          {user && window.location.href === 'http://localhost:3000/dashboard' && (
+          {user && (window.location.href === `${dashboardToggleLink}` || window.location.href === `${dashboardToggleLink}/allSeller` || window.location.href === `${dashboardToggleLink}/allBuyer` || window.location.href === `${dashboardToggleLink}/addAProduct` || window.location.href === `${dashboardToggleLink}/myProducts` || window.location.href === `${dashboardToggleLink}/myOrders` || window.location.href === `${dashboardToggleLink}/myWishList`) && (
             <label
               htmlFor="dashboard-drawer"
               tabIndex={2}

@@ -25,7 +25,7 @@ const Shop = () => {
               </h1>
               <HiArrowNarrowRight className="text-4xl mt-2 " />
             </Link>
-            <div className="grid grid-cols-2 mx-5 lg:mx-0 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 mx-5 lg:mx-0 md:grid-cols-3 lg:grid-cols-4 lg:gap-4 gap-2">
               {category.map((books) => (
                 <div key={books._id} className= "card bg-zinc-200 shadow-xl rounded-md ">
                   <figure className="py-8 bg-white">
@@ -42,7 +42,7 @@ const Shop = () => {
                     
                     <div className="text-gray-600">
                       <p className="mb-3">{books.author}</p>
-                      <div className="flex gap-1 mb-14 items-center">
+                      <div className="flex text-sm gap-1 mb-14 items-center">
                         <Rating>
                           <Rating.Star className="bg-green-700" />
                         </Rating>

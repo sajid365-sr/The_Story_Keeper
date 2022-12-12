@@ -10,7 +10,7 @@ const GetBooks = () => {
     queryKey: ["books"],
     queryFn: async () => {
       const res = await fetch(
-        "http://localhost:5000/books"
+        "https://the-story-keeper-server-sajid365-sr.vercel.app/books"
       );
       const data = await res.json();
       return data;
@@ -20,7 +20,7 @@ const GetBooks = () => {
   refetch();
 
   return (
-    <section className="max-w-screen-xl py-10 lg:mb-52 mb-36 mx-auto">
+    <section className="max-w-screen-xl lg:py-10 py-5 lg:mb-52 mb-36 mx-auto">
       {books.map((category, i) => (
         <div key={i} className="mb-24">
           <Link
@@ -32,7 +32,7 @@ const GetBooks = () => {
             </h1>
             <HiArrowNarrowRight className="text-4xl mt-2 " />
           </Link>
-          <div className="grid grid-cols-2 mx-5 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 mx-5 md:grid-cols-3 lg:grid-cols-4 lg:gap-4 gap-2">
             {category.map((books) => (
               <div
                 key={books._id}
@@ -57,7 +57,7 @@ const GetBooks = () => {
 
                   <div className="text-gray-600 ">
                     <p className="mb-3">{books.author}</p>
-                    <div className="flex gap-1  mb-14 items-center">
+                    <div className="flex gap-1 text-sm mb-14 items-center">
                       <Rating>
                         <Rating.Star className="bg-green-700" />
                       </Rating>

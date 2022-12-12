@@ -54,7 +54,7 @@ const CheckOutForm = ({ items }) => {
   if (success) {
     // Set payment status pending to success
     fetch(
-      `http://localhost:5000/payment/status/${productId}`
+      `https://the-story-keeper-server-sajid365-sr.vercel.app/payment/status/${productId}`
     )
       .then((res) => res.json())
       .then((data) => {});
@@ -68,7 +68,7 @@ const CheckOutForm = ({ items }) => {
     };
 
     // Store payment info in the database.........
-    fetch("http://localhost:5000/payments", {
+    fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/payments", {
       method: "POST",
       headers: {
         "content-type": "application/json",

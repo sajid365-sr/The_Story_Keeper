@@ -1,6 +1,9 @@
 import React from "react";
 
+
 const Blog = () => {
+
+
   return (
     <div className="container mx-auto mb-24">
       <h3 className="text-center text-[#291334] my-10 lg:text-4xl text-3xl font-semibold">
@@ -8,7 +11,7 @@ const Blog = () => {
         Should Know About !!
       </h3>
 
-      <article className="mx-auto lg:w-3/4 w-10/12 rounded-lg lg:p-10 p-5 mb-5 bg-gray-300 bg-opacity-50">
+      <article  className="mx-auto lg:w-3/4 w-10/12 rounded-lg lg:p-10 p-5 mb-5 bg-gray-300 bg-opacity-50">
         <h2 className="text-center font-semibold text-3xl pb-5 text-cyan-800">
           What are the different ways to manage a state in a React application?
         </h2>
@@ -70,7 +73,7 @@ const Blog = () => {
           </p>
         </div>
       </article>
-      <article className="mx-auto lg:w-3/4 w-10/12 rounded-lg lg:p-10 p-5 mb-5 bg-gray-300 bg-opacity-50">
+      <article  className="mx-auto lg:w-3/4 w-10/12 rounded-lg lg:p-10 p-5 mb-5 bg-gray-300 bg-opacity-50">
         <h2 className="text-center font-semibold text-3xl pb-5 text-cyan-800">
           How does prototypical inheritance work?
         </h2>

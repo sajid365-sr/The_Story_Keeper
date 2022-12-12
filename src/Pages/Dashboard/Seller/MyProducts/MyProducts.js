@@ -20,7 +20,7 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/myProducts?email=${user?.email}`,
+          `https://the-story-keeper-server-sajid365-sr.vercel.app/myProducts?email=${user?.email}`,
           {
             headers: {
               authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
@@ -43,7 +43,7 @@ const MyProducts = () => {
   const handleDelete = (id) => {
     axios
       .delete(
-        `http://localhost:5000/myProduct/delete/${id}`,
+        `https://the-story-keeper-server-sajid365-sr.vercel.app/myProduct/delete/${id}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
@@ -61,7 +61,7 @@ const MyProducts = () => {
 
   const handleAdvertise = (product) => {
     axios
-      .post("http://localhost:5000/advertise", {
+      .post("https://the-story-keeper-server-sajid365-sr.vercel.app/advertise", {
         product,
       })
       .then((res) => {

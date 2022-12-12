@@ -6,7 +6,7 @@ const AllBuyer = () => {
   const { data: buyers = [], refetch } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allBuyer",{
+      const res = await fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/allBuyer",{
         headers:{
           authorization : `Bearer ${localStorage.getItem('AccessToken')}`
         }
@@ -26,7 +26,7 @@ const AllBuyer = () => {
       }
     });
     if(confirm){
-      fetch(`http://localhost:5000/delete/buyer?email=${email}`)
+      fetch(`https://the-story-keeper-server-sajid365-sr.vercel.app/delete/buyer?email=${email}`)
       .then(res => res.json())
       .then(data => {
         

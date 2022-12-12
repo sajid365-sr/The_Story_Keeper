@@ -56,7 +56,7 @@ const PricePlan = () => {
 
   return (
     <section className="mb-40 lg:max-w-screen-xl w-3/4 lg:w-full mx-auto">
-      <div className="lg:w-[450px] w-[400px] mb-16 text-center mx-auto">
+      <div className="lg:w-[450px] w-[330px] mb-16 text-center mx-auto">
         <p className="text-sky-700 text-base font-bold">PRICE PLANS</p>
         <h1 className="lg:text-5xl text-4xl my-8 text-gray-800 font-bold">
           Get Your Best Plans Quickly
@@ -74,7 +74,7 @@ const PricePlan = () => {
         {plans.map((plan) => (
           <div
             key={plan.id}
-            className={`bg-gray-200 px-10 py-16 rounded-lg max-w-sm ${
+            className={`bg-gray-200 px-5 py-16 rounded-lg max-w-sm ${
               visible
                 ? "translate-x-0 translate-y-0 transition-all duration-1000 opacity-100"
                 : `${plan.animation}`

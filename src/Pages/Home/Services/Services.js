@@ -36,25 +36,26 @@ const Services = () => {
     },
   ];
   return (
-    <div ref={serviceRef} className="max-w-screen-xl mx-auto mb-52">
+    <div ref={serviceRef} className="max-w-screen-xl mx-auto mb-40 lg:mb-52">
+      <p className="text-4xl text-gray-700 text-bold text-center mb-20 underline">Services we provide</p>
       <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
         {services.map((service) => (
           <div
             key={service.id}
-            className={`card w-96 pb-8 shadow-xl mx-auto mb-20 lg:mb-0 bg-[#856090] ${
+            className={`card w-96 pb-8 shadow-xl mx-auto mb-10 lg:mb-0 bg-[#856090] ${
               visible
                 ? "translate-y-0 transition-all duration-1000 opacity-100"
                 : `${service.animation}`
             }`}
           >
-            <figure className="px-10 pt-10">
+            <figure className="px-10 lg:pt-10 pt-5">
               <img className="w-[80px]" src={service.img} alt="Shoes" />
             </figure>
-            <div className="card-body items-center text-center">
+            <div className="card-body py-3 lg:py-8 items-center text-center">
               <h2 className="card-title text-gray-100 font-bold text-3xl">
                 {service.title}
               </h2>
-              <p className="text-gray-300  font-medium mt-10">
+              <p className="text-gray-300  font-medium lg:mt-10 mt-4">
                 {service.about}
               </p>
             </div>

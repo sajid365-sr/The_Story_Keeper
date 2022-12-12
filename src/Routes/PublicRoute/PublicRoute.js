@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/shop",
-        loader: () => fetch("http://localhost:5000/allBooks"),
+        loader: () => fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/allBooks"),
         element: <Shop></Shop>,
       },
       {
@@ -68,7 +68,7 @@ export const router = createBrowserRouter([
       {
         path: "/category/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(`https://the-story-keeper-server-sajid365-sr.vercel.app/category/${params.id}`),
         element: (
           <PrivateRoute>
             <Categories></Categories>
@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
       {
         path: "/books/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/book/${params.id}`),
+          fetch(`https://the-story-keeper-server-sajid365-sr.vercel.app/book/${params.id}`),
         element: (
           <PrivateRoute>
             <BookDetails></BookDetails>
@@ -130,7 +130,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payment/:id",
-        loader: ({params}) => fetch(`http://localhost:5000/payment/${params.id}`),
+        loader: ({params}) => fetch(`https://the-story-keeper-server-sajid365-sr.vercel.app/payment/${params.id}`),
         element: (
           <BuyerRoute>
             <Payment></Payment>
@@ -139,7 +139,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/payment2/:id",
-        loader: ({params}) => fetch(`http://localhost:5000/payment2/${params.id}`),
+        loader: ({params}) => fetch(`https://the-story-keeper-server-sajid365-sr.vercel.app/payment2/${params.id}`),
         element: (
           <BuyerRoute>
             <Payment></Payment>

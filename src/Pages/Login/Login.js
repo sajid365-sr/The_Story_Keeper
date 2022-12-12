@@ -57,7 +57,7 @@ const Login = () => {
           name:user?.displayName
         }
         setUserEmail(user?.email);
-        fetch("http://localhost:5000/users", {
+        fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/users", {
           method: "post",
           headers: {
             "content-type": "application/json",
@@ -85,7 +85,7 @@ const Login = () => {
           name:user?.displayName
         }
         setUserEmail(user?.email);
-        fetch("http://localhost:5000/users", {
+        fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/users", {
           method: "post",
           headers: {
             "content-type": "application/json",
@@ -94,7 +94,7 @@ const Login = () => {
         })
         .then((res) => res.json())
         .then(data => {
-          console.log(data)
+          
         })
         
       })
