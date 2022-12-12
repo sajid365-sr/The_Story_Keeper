@@ -10,7 +10,7 @@ const AllSeller = () => {
   const { data: sellers = [], refetch } = useQuery({
     queryKey: ["sellers"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/allSeller",{
+      const res = await fetch("https://the-story-keeper-server-sajid365-sr.vercel.app/allSeller",{
         headers:{
           authorization : `Bearer ${localStorage.getItem('AccessToken')}`
         }
@@ -23,7 +23,7 @@ const AllSeller = () => {
 
   // Verify seller 
   const handleVerification = (email) =>{
-    axios.get(`http://localhost:5000/seller/verify?email=${email}`,{
+    axios.get(`https://the-story-keeper-server-sajid365-sr.vercel.app/seller/verify?email=${email}`,{
       headers:{
         authorization : `Bearer ${localStorage.getItem('AccessToken')}`
       }
@@ -36,7 +36,7 @@ const AllSeller = () => {
     const handleDeleteSeller = (email) =>{
       const confirm = window.confirm(`Are you sure want to delete ${email}?`);
       if(confirm){
-        fetch(`http://localhost:5000/delete/seller?email=${email}`)
+        fetch(`https://the-story-keeper-server-sajid365-sr.vercel.app/delete/seller?email=${email}`)
         .then(res => res.json())
         .then(data => {
           

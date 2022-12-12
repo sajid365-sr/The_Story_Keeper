@@ -13,7 +13,7 @@ const Payment = () => {
   // Get client secret from server
   useEffect(() => {
     fetch(
-      "http://localhost:5000/create-payment-intent",
+      "https://the-story-keeper-server-sajid365-sr.vercel.app/create-payment-intent",
       {
         method: "post",
         headers: {
