@@ -21,11 +21,12 @@ const AddAProduct = () => {
         "https://the-story-keeper-server-sajid365-sr.vercel.app/categories"
       );
       const data = await res.json();
-      refetch();
+      
       return data;
     },
   });
 
+  refetch();
   const handleCategory = (event) => {
     let value = event.target.value;
 
