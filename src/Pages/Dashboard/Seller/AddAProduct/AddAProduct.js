@@ -95,15 +95,14 @@ const AddAProduct = () => {
 
   return (
     <div className="max-w-screen-lg mx-auto my-[20%] lg:my-[7%] pt-10 pb-20 lg:px-16 px-8 lg:rounded-lg bg-zinc-800">
+      <h1 className="text-white text-center text-4xl">Add a new book</h1>
+      <p className="text-gray-400 text-sm mb-20  text-center">
+        Note: <span className="text-red-500 ml-1 text-xl">*</span> mark fields
+        are mandatory
+      </p>
       {
         spinner ?
           <>
-
-            <h1 className="text-white text-center text-4xl">Add a new book</h1>
-            <p className="text-gray-400 text-sm mb-20  text-center">
-              Note: <span className="text-red-500 ml-1 text-xl">*</span> mark fields
-              are mandatory
-            </p>
             <div className="text-center flex flex-col gap-2">
 
               <Spinner
@@ -116,7 +115,6 @@ const AddAProduct = () => {
             </div>
           </>
           :
-
           <form onSubmit={handleSubmit(handleFormSubmit)}>
             {/*==================================== Book Title ============================================ */}
 
