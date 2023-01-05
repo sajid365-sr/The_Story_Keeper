@@ -42,22 +42,27 @@ const MyProducts = () => {
   }
 
   const handleDelete = (id) => {
-    axios
-      .delete(
-        `https://the-story-keeper-server-sajid365-sr.vercel.app/myProduct/delete/${id}`,
-        {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.statusText === "OK") {
-          toast.success("Item deleted successfully");
-          refetch();
-        }
-      })
-      .catch((err) => console.error(err));
+
+    const permission = window.confirm("Are you sure you want to delete?")
+    if (permission) {
+      axios
+        .delete(
+          `https://the-story-keeper-server-sajid365-sr.vercel.app/myProduct/delete/${id}`,
+          {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("AccessToken")}`,
+            },
+          }
+        )
+        .then((res) => {
+
+          if (res.status === 200) {
+            toast.success("Item deleted successfully");
+            refetch();
+          }
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   const handleAdvertise = (product) => {
@@ -66,9 +71,10 @@ const MyProducts = () => {
         product,
       })
       .then((res) => {
-        if (res.statusText === "OK") {
+        if (res.status === 200) {
           toast.success("Items have been advertised");
           refetch();
+
         }
       });
   };
@@ -76,7 +82,7 @@ const MyProducts = () => {
   refetch();
   return (
     <div className="overflow-x-auto my-20 w-11/12 mx-auto">
-      {products.length < 1 ? (
+      {products.length === 0 ? (
         <div className="my-24 text-center">
           <h1 className="text-4xl text-gray-600 font-semibold">
             You have to products to display.
@@ -98,7 +104,7 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product, i) => (
+            {products?.map((product, i) => (
               <tr key={product._id} className="h-10 hover text-gray-600">
                 <th>{i + 1}</th>
                 <th className="p-2">
@@ -126,9 +132,8 @@ const MyProducts = () => {
                   {product.status === "available" && (
                     <button
                       onClick={() => handleAdvertise(product)}
-                      className={`btn btn-sm rounded-none ${
-                        product.advertise ? "btn-success" : "btn-primary"
-                      }`}
+                      className={`btn btn-sm rounded-none ${product.advertise ? "btn-success" : "btn-primary"
+                        }`}
                     >
                       {product.advertise ? "Advertised" : "Advertise"}
                     </button>
