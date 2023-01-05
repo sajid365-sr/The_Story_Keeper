@@ -18,7 +18,7 @@ const DashboardLayout = () => {
       
       <Header></Header>
        {/* Dashboard toggle button */}
-       <div className="flex lg:hidden justify-end -mt-16 mr-16">
+       <div className="flex lg:hidden justify-end -mt-16 mr-20">
        <label
               htmlFor="dashboard-drawer"
               tabIndex={2}
